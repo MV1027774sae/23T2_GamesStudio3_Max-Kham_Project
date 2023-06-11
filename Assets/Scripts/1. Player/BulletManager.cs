@@ -14,7 +14,7 @@ public class BulletManager : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     IEnumerator DeathDelay()
@@ -25,19 +25,19 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyAIBasic>().DamageEnemy(damage);
             Destroy(gameObject);
         }
 
-        if(collision.tag == "ChargableObject")
+        if (collision.tag == "ChargableObject")
         {
             collision.gameObject.GetComponent<SwitchController>().ChargeSwitch();
             Destroy(gameObject);
         }
 
-        if(collision.tag == "SimpleCollider")
+        if (collision.tag == "SimpleCollider")
         {
             Destroy(gameObject);
         }
