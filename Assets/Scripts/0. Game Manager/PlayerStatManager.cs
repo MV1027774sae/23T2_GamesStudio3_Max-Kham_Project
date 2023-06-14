@@ -25,12 +25,16 @@ public class PlayerStatManager : MonoBehaviour
 
     public TextMeshProUGUI healthTMPro;
 
+    [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
+
     void Awake()
     {
         if(instance == null)
         {
             instance = this;
         }
+
+        health = maxHealth;
     }
 
     void Update()

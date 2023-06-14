@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
+    [SerializeField] private Transform tr; 
+
     [SerializeField] private float lifeTime;
     public int damage = 1;
+
+    [SerializeField] private GameObject explosion;
 
     void Start()
     {
         StartCoroutine(DeathDelay());
     }
 
-    void Update()
-    {
-        
-    }
-
     IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(lifeTime);
-        Destroy(gameObject);
+        Explode();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,18 +27,24 @@ public class BulletManager : MonoBehaviour
         if(collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyAIBasic>().DamageEnemy(damage);
-            Destroy(gameObject);
+            Explode();
         }
 
-        if(collision.tag == "ChargableObject")
+        if(collision.tag == "Chargable Object")
         {
             collision.gameObject.GetComponent<SwitchController>().ChargeSwitch();
-            Destroy(gameObject);
+            Explode();
         }
 
-        if(collision.tag == "SimpleCollider")
+        if(collision.tag == "Simple Collider")
         {
-            Destroy(gameObject);
+            Explode();
         }
+    }
+
+    private void Explode()
+    {
+        Instantiate(explosion, tr.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }
