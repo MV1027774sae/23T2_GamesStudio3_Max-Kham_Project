@@ -29,6 +29,8 @@ public class EnemyAIBasic : MonoBehaviour
     private bool chooseDirection, hasAttacked, dead = false;
     private Vector3 randomDirection;
 
+    [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -126,6 +128,7 @@ public class EnemyAIBasic : MonoBehaviour
     {
         if(!hasAttacked)
         {
+            playerController2DTopDown.StartCoroutine(playerController2DTopDown.FlashCo());
             PlayerStatManager.DamagePlayer(attackDamage);
             StartCoroutine(HasAttacked());
         }
