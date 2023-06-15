@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     public float rotateSpeed = 5f;
     private Rigidbody2D rb;
 
+    [SerializeField] private int damage = 1;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,7 +54,7 @@ public class Enemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            PlayerStatManager.DamagePlayer(damage);
             target = null;
         }
     }

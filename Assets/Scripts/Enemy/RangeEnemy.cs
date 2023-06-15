@@ -13,6 +13,7 @@ public class RangeEnemy : MonoBehaviour
     public float distanceToShoot = 5f;
     public float distanceToStop = 3f;
 
+    [SerializeField] private int damage = 1;
     public float fireRate;
     private float timeToFire;
 
@@ -90,7 +91,7 @@ public class RangeEnemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            PlayerStatManager.DamagePlayer(damage);
             target = null;
         }
         else if(other.gameObject.CompareTag("Bullet"))

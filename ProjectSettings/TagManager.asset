@@ -9,6 +9,7 @@ TagManager:
   - FxTemporaire
   - ChargableObject
   - Bullet
+  - DestroyableObject
   layers:
   - Default
   - TransparentFX

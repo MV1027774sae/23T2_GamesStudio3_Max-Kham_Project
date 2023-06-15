@@ -9,8 +9,8 @@ public class PlayerStatManager : MonoBehaviour
 {
     public static PlayerStatManager instance;
 
-    public string characterName = "undefined";
-    public int currentLevel = 0;
+    //public string characterName = "undefined";
+    //public int currentLevel = 0;
 
     //player stats
     private static int health = 4;
@@ -23,7 +23,7 @@ public class PlayerStatManager : MonoBehaviour
     public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     public static float FireRate { get => fireRate; set => fireRate = value; }
 
-    public TextMeshProUGUI healthTMPro;
+    //public TextMeshProUGUI healthTMPro;
 
     [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
 
@@ -39,7 +39,7 @@ public class PlayerStatManager : MonoBehaviour
 
     void Update()
     {
-        healthTMPro.text = health.ToString();
+        //healthTMPro.text = health.ToString();
     }
 
     public static void DamagePlayer(int damage)
