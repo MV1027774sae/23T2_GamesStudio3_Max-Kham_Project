@@ -25,7 +25,7 @@ public class BulletManager : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyAIBasic>().DamageEnemy(damage);
+            collision.gameObject.GetComponent<EnemyHealthManager>().DamageEnemy(damage);
             Explode();
         }
 

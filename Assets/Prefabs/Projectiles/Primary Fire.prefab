@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: -1278691947485089058}
   m_Layer: 0
   m_Name: Primary Fire
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53137798430e32a42bfeaeed8b42bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 8064191485725296137, guid: 1a6291b8096afbc4b9cb92a8036864ac, type: 3}
   tr: {fileID: 8899517242066624243}
   lifeTime: 3
   damage: 1
-  explosion: {fileID: 8064191485725296137, guid: 1a6291b8096afbc4b9cb92a8036864ac, type: 3}
