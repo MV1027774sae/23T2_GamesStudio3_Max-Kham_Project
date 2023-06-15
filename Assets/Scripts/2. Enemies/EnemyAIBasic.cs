@@ -129,7 +129,7 @@ public class EnemyAIBasic : MonoBehaviour
         if(!hasAttacked)
         {
             playerController2DTopDown.StartCoroutine(playerController2DTopDown.FlashCo());
-            PlayerStatManager.DamagePlayer(attackDamage);
+            //PlayerStatManager.DamagePlayer(attackDamage);
             StartCoroutine(HasAttacked());
         }
     }

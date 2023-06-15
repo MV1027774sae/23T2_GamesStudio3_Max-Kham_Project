@@ -19,6 +19,9 @@ public class RangeEnemy : MonoBehaviour
 
     public Transform firingPoint;
 
+    private bool canAttack = true;
+    [SerializeField] private float attackRate = 2f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -89,15 +92,24 @@ public class RangeEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") && canAttack)
         {
-            PlayerStatManager.DamagePlayer(damage);
+            other.gameObject.GetComponent<PlayerStatManager>().DamagePlayer(damage);
+            //PlayerStatManager.DamagePlayer(damage);
             target = null;
+            canAttack = false;
+            StartCoroutine(ResetAttack());
         }
         else if(other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator ResetAttack()
+    {
+        yield return new WaitForSeconds(attackRate);
+        canAttack = true;
     }
 }

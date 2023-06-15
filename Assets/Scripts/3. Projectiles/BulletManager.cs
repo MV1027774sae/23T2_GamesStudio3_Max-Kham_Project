@@ -35,7 +35,7 @@ public class BulletManager : MonoBehaviour
             Explode();
         }
 
-        if (collision.tag == "SimpleCollider")
+        if (collision.tag == "Simple Collider")
         {
             Explode();
         }

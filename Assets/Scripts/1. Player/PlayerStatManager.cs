@@ -7,58 +7,59 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStatManager : MonoBehaviour
 {
-    public static PlayerStatManager instance;
+    //public /*static*/ PlayerStatManager instance;
 
     //public string characterName = "undefined";
     //public int currentLevel = 0;
 
     //player stats
-    private static int health = 4;
-    private static int maxHealth = 4;
-    private static float moveSpeed = 5f;
-    private static float fireRate = 0.6f;
+    private /*static*/ int health = 4;
+    [SerializeField] private /*static*/ int maxHealth = 4;
+    //[SerializeField] private /*static*/ float moveSpeed = 5f;
+    //[SerializeField] private /*static*/ float fireRate = 0.6f;
 
-    public static int Health { get => health; set => health = value; }
-    public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
-    public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
-    public static float FireRate { get => fireRate; set => fireRate = value; }
+    //public static int Health { get => health; set => health = value; }
+    //public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
+    //public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
+    //public static float FireRate { get => fireRate; set => fireRate = value; }
 
-    //public TextMeshProUGUI healthTMPro;
+    public TextMeshProUGUI healthTMPro;
 
     [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
 
     void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
+        //if(instance == null)
+        //{
+        //    instance = this;
+        //}
 
         health = maxHealth;
     }
 
     void Update()
     {
-        //healthTMPro.text = health.ToString();
+        healthTMPro.text = "Health: " + health.ToString();
     }
 
-    public static void DamagePlayer(int damage)
+    public /*static*/ void DamagePlayer(int damage)
     {
         health -= damage;
 
-        if (Health <= 0)
+        if (health <= 0)
         {
             KillPlayer();
         }
     }
 
-    public static void HealPlayer(int healAmount)
+    public /*static*/ void HealPlayer(int healAmount)
     {
-        Health = Mathf.Min(maxHealth, health + healAmount);
+        health = Mathf.Min(maxHealth, health + healAmount);
     }
 
-    private static void KillPlayer()
+    private /*static*/ void KillPlayer()
     {
+        Cursor.visible = true;
         SceneManager.LoadScene(1);
     }
 }

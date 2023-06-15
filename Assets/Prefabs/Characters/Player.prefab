@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 6654196349612785396}
   - component: {fileID: 3990326686506500180}
   - component: {fileID: 24702290080191967}
+  - component: {fileID: 8086402521218610376}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -241,9 +242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79857afc0ba131d44b607aa3c353d765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableObject:
-    serializedVersion: 2
-    m_Bits: 384
   moveSpeed: 6
   dashPower: 40
   dashTime: 0.1
@@ -260,6 +258,19 @@ MonoBehaviour:
   mySprite: {fileID: 3907436532839486982}
   rb: {fileID: 6654196349612785396}
   target: {fileID: 4515441961283792672}
+--- !u!114 &8086402521218610376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982944950532384070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585af6cf75ca0c4448e7895d2b993357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController2DTopDown: {fileID: 24702290080191967}
 --- !u!1 &4515441961283792672
 GameObject:
   m_ObjectHideFlags: 0

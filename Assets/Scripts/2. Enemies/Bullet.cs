@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -11,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float lifeTime = 10f;
 
     private Rigidbody2D rb;
+    [SerializeField] private int damage = 1;
 
     private void Start()
     {
@@ -22,5 +21,21 @@ public class Bullet : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.gameObject.GetComponent<PlayerStatManager>().DamagePlayer(damage);
+            Destroy(gameObject);
+        }
+
+        if (collision.tag == "Simple Collider")
+        {
+            Destroy(gameObject);
+        }
+
+        else return;
     }
 }

@@ -9,6 +9,9 @@ public class Enemy : MonoBehaviour
     public float rotateSpeed = 5f;
     private Rigidbody2D rb;
 
+    private bool canAttack = true;
+    [SerializeField] private float attackRate = 1.5f;
+
     [SerializeField] private int damage = 1;
 
     private void Start()
@@ -52,10 +55,19 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player") && canAttack)
         {
-            PlayerStatManager.DamagePlayer(damage);
+            other.gameObject.GetComponent<PlayerStatManager>().DamagePlayer(damage);
             target = null;
+            canAttack = false;
+
+            StartCoroutine(ResetAttack());
         }
+    }
+
+    IEnumerator ResetAttack()
+    {
+        yield return new WaitForSeconds(attackRate);
+        canAttack = true;
     }
 }
