@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerController2DTopDown : MonoBehaviour
 {
-    [SerializeField] private LayerMask interactableObject;
-
     [Header ("Movement")]
     [SerializeField] private float moveSpeed = 5;
     private Vector2 moveDirection;

@@ -9,21 +9,21 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SaveLoadManager.LoadGame(playerStatManager);
+        //SaveLoadManager.LoadGame(playerStatManager);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-            SaveLoadManager.SaveGame(playerStatManager);
+        //if (Input.GetKeyDown(KeyCode.O))
+        //    SaveLoadManager.SaveGame(playerStatManager);
 
-        if (Input.GetKeyDown(KeyCode.L))
-            SaveLoadManager.LoadGame(playerStatManager);
+        //if (Input.GetKeyDown(KeyCode.L))
+        //    SaveLoadManager.LoadGame(playerStatManager);
     }
 
     private void OnDestroy()
     {
-        SaveLoadManager.SaveGame(playerStatManager);
-        PlayerPrefs.Save();
+        //SaveLoadManager.SaveGame(playerStatManager);
+        //PlayerPrefs.Save();
     }
 }

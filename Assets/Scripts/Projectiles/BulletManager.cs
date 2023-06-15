@@ -29,9 +29,9 @@ public class BulletManager : MonoBehaviour
             Explode();
         }
 
-        if (collision.tag == "ChargableObject")
+        if (collision.tag == "DestroyableObject")
         {
-            collision.gameObject.GetComponent<SwitchController>().ChargeSwitch();
+            collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
             Explode();
         }
 
