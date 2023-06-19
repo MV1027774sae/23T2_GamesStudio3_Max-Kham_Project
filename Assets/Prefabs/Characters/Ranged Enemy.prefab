@@ -156,8 +156,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 315185773048969004, guid: 87d33094892e48a4c928a70fdecaaa97, type: 3}
   distanceToShoot: 10
   distanceToStop: 5
+  damage: 1
   fireRate: 1
   firingPoint: {fileID: 7839068793292664019}
+  attackRate: 2
 --- !u!114 &4802557102025648581
 MonoBehaviour:
   m_ObjectHideFlags: 0

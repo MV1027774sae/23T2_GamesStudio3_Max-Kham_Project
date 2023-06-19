@@ -13,6 +13,12 @@ public class RangeEnemy : MonoBehaviour
     public float distanceToShoot = 5f;
     public float distanceToStop = 3f;
 
+
+    //materials
+    private Material matWhite;
+    private Material matDefault;
+    SpriteRenderer sr;
+
     [SerializeField] private int damage = 1;
     public float fireRate;
     private float timeToFire;
@@ -22,14 +28,17 @@ public class RangeEnemy : MonoBehaviour
     private bool canAttack = true;
     [SerializeField] private float attackRate = 2f;
 
-    private void Start()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
+        matWhite = Resources.Load("WhiteFlash", typeof(Material)) as Material;
+        matDefault = sr.material;
     }
 
     private void Update()
     {
-        if(!target)
+        if (!target)
         {
             GetTarget();
         }
@@ -38,7 +47,7 @@ public class RangeEnemy : MonoBehaviour
             RotateTorwardsTarget();
         }
 
-        if(target!= null && Vector2.Distance(target.position, transform.position) <= distanceToShoot)
+        if (target != null && Vector2.Distance(target.position, transform.position) <= distanceToShoot)
         {
             Shoot();
         }
@@ -59,7 +68,7 @@ public class RangeEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target != null) 
+        if (target != null)
         {
             if (Vector2.Distance(target.position, transform.position) >= distanceToStop)
             {
@@ -70,7 +79,7 @@ public class RangeEnemy : MonoBehaviour
                 rb.velocity = Vector2.zero;
             }
         }
-        
+
     }
 
     private void RotateTorwardsTarget()
@@ -87,12 +96,12 @@ public class RangeEnemy : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        
+
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Player") && canAttack)
+        if (other.gameObject.CompareTag("Player") && canAttack)
         {
             other.gameObject.GetComponent<PlayerStatManager>().DamagePlayer(damage);
             //PlayerStatManager.DamagePlayer(damage);
@@ -100,11 +109,32 @@ public class RangeEnemy : MonoBehaviour
             canAttack = false;
             StartCoroutine(ResetAttack());
         }
-        else if(other.gameObject.CompareTag("Bullet"))
+        else if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
-            Destroy(gameObject);
+
+            EnemyHealthManager enemyHealthManager = GetComponent<EnemyHealthManager>();
+            if (enemyHealthManager != null)
+            {
+                enemyHealthManager.DamageEnemy(damage);
+            }
+
+            sr.material = matWhite;
+
+            if (enemyHealthManager != null && enemyHealthManager.health <= 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Invoke("ResetMaterial", 0.5f);
+            }
         }
+    }
+
+    void ResetMaterial()
+    {
+        sr.material = matDefault;
     }
 
     IEnumerator ResetAttack()
@@ -113,3 +143,4 @@ public class RangeEnemy : MonoBehaviour
         canAttack = true;
     }
 }
+
