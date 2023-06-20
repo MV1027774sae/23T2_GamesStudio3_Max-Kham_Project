@@ -37,17 +37,4 @@ public class BeamManager : MonoBehaviour
     {
         canAttack = true;
     }
-
-    private IEnumerator DamageEnemy(Collider2D collision)
-    {
-        collision.gameObject.GetComponent<EnemyAIBasic>().DamageEnemy(damage);
-        Debug.Log("Damaged Enemy?");
-        yield return new WaitForSeconds(attackRate);
-    }
-
-    private IEnumerator DamageObject(Collider2D collision)
-    {
-        collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
-        yield return new WaitForSeconds(attackRate);
-    }
 }
