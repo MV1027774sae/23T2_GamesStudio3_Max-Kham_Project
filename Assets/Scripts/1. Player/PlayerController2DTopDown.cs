@@ -23,7 +23,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     [Header("Secondary Fire")]
     [SerializeField] private GameObject secondaryFireObject;
     [SerializeField] private float beamVelocity = 40;
-    [SerializeField] private float beamRechargeTime = 1f;
+    [SerializeField] private float beamRechargeTime = 2f;
     private bool beamFired;
 
     [Header("IFrames")]

@@ -246,10 +246,12 @@ MonoBehaviour:
   dashPower: 40
   dashTime: 0.1
   dashCooldown: 1
-  lightningBolt: {fileID: 7524095996251379231, guid: f7f833c9ebf1e9741a7237da5ebfba1f, type: 3}
-  shootPoint: {fileID: 2212868491120503976}
+  primaryFireObject: {fileID: 7524095996251379231, guid: f7f833c9ebf1e9741a7237da5ebfba1f, type: 3}
   shotVelocity: 10
   timeBetweenFiring: 0.5
+  secondaryFireObject: {fileID: 6719320179536930201, guid: 52608f90d7e1b85458920aa0d09e0ea0, type: 3}
+  beamVelocity: 40
+  beamRechargeTime: 2
   flashColor: {r: 1, g: 0.082352936, b: 0.17695124, a: 0.64705884}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   flashDuration: 0.07
@@ -258,6 +260,7 @@ MonoBehaviour:
   mySprite: {fileID: 3907436532839486982}
   rb: {fileID: 6654196349612785396}
   target: {fileID: 4515441961283792672}
+  shootPoint: {fileID: 2212868491120503976}
 --- !u!114 &8086402521218610376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585af6cf75ca0c4448e7895d2b993357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 4
+  healthTMPro: {fileID: 0}
   playerController2DTopDown: {fileID: 24702290080191967}
 --- !u!1 &4515441961283792672
 GameObject:

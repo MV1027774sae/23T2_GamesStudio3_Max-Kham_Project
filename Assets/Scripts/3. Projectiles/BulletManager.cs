@@ -39,6 +39,7 @@ public class BulletManager : MonoBehaviour
         {
             Explode();
         }
+        else return;
     }
 
     private void Explode()
