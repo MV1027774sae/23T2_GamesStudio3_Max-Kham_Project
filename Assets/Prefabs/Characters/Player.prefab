@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 6654196349612785396}
   - component: {fileID: 3990326686506500180}
   - component: {fileID: 24702290080191967}
+  - component: {fileID: 8086402521218610376}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -241,17 +242,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79857afc0ba131d44b607aa3c353d765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactableObject:
-    serializedVersion: 2
-    m_Bits: 384
   moveSpeed: 6
   dashPower: 40
   dashTime: 0.1
   dashCooldown: 1
-  lightningBolt: {fileID: 7524095996251379231, guid: f7f833c9ebf1e9741a7237da5ebfba1f, type: 3}
+  primaryFireObject: {fileID: 7524095996251379231, guid: f7f833c9ebf1e9741a7237da5ebfba1f, type: 3}
   shootPoint: {fileID: 2212868491120503976}
   shotVelocity: 10
   timeBetweenFiring: 0.5
+  lineRenderer: {fileID: 0}
+  firePoint: {fileID: 0}
   flashColor: {r: 1, g: 0.082352936, b: 0.17695124, a: 0.64705884}
   regularColor: {r: 1, g: 1, b: 1, a: 0}
   flashDuration: 0.07
@@ -260,6 +260,23 @@ MonoBehaviour:
   mySprite: {fileID: 3907436532839486982}
   rb: {fileID: 6654196349612785396}
   target: {fileID: 4515441961283792672}
+<<<<<<< HEAD
+  cam: {fileID: 0}
+=======
+--- !u!114 &8086402521218610376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2982944950532384070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 585af6cf75ca0c4448e7895d2b993357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController2DTopDown: {fileID: 24702290080191967}
+>>>>>>> main
 --- !u!1 &4515441961283792672
 GameObject:
   m_ObjectHideFlags: 0

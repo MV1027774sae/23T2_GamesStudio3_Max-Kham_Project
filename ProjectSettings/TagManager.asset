@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Simple Collider
   - FxTemporaire
+  - ChargableObject
+  - Bullet
+  - DestroyableObject
   layers:
   - Default
   - TransparentFX

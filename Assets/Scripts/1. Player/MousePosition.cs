@@ -9,6 +9,7 @@ public class MousePosition : MonoBehaviour
     private void Start()
     {
         Cursor.visible = false;
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
     void Update()
     {

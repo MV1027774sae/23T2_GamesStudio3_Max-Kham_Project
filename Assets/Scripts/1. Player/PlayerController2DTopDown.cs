@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerController2DTopDown : MonoBehaviour
 {
-    [SerializeField] private LayerMask interactableObject;
-
     [Header ("Movement")]
     [SerializeField] private float moveSpeed = 5;
     private Vector2 moveDirection;
@@ -17,11 +15,16 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private float dashCooldown = 1f;
 
     [Header ("Primary Fire")]
-    [SerializeField] private GameObject lightningBolt;
-    [SerializeField] private Transform shootPoint;
+    [SerializeField] private GameObject primaryFireObject;
     [SerializeField] private float shotVelocity = 20;
     [SerializeField] private float timeBetweenFiring = 0.4f;
     private bool alreadyFired;
+
+    [Header("Secondary Fire")]
+    [SerializeField] private GameObject secondaryFireObject;
+    [SerializeField] private float beamVelocity = 40;
+    [SerializeField] private float beamRechargeTime = 1f;
+    private bool beamFired;
 
     [Header("IFrames")]
     [SerializeField] private Color flashColor;
@@ -34,6 +37,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     //declarations
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject target;
+    [SerializeField] private Transform shootPoint;
+    private Quaternion rotation;
     private int fr = 60;
 
     private void Start()
@@ -48,15 +53,19 @@ public class PlayerController2DTopDown : MonoBehaviour
         {
             return;
         }
-        
+
         ProcessInputs();
 
         //firing
-        if (Input.GetButton("Fire1") && !alreadyFired)
+        if (Input.GetButton("Fire1") && !alreadyFired && !beamFired)
         {
             PrimaryFire();
         }
 
+        if (Input.GetButtonDown("Fire2") && !alreadyFired && !beamFired)
+        {
+            SecondaryFire();
+        }
     }
 
     private void FixedUpdate()
@@ -94,16 +103,37 @@ public class PlayerController2DTopDown : MonoBehaviour
         Vector2 aimDirection = targetPosition - rb.position;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        Rigidbody2D ball = Instantiate(lightningBolt, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
+        Rigidbody2D ball = Instantiate(primaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
         ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * shotVelocity;
 
         alreadyFired = true;
-        Invoke(nameof(ResetFire), timeBetweenFiring);
+        Invoke(nameof(ResetPrimaryFire), timeBetweenFiring);
     }
 
-    private void ResetFire()
+    private void SecondaryFire()
+    {
+        Vector2 targetPosition = target.transform.localPosition;
+
+        Vector2 aimDirection = targetPosition - rb.position;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+
+        Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
+        ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * beamVelocity;
+
+        alreadyFired = true;
+        beamFired = true;
+        Invoke(nameof(ResetSecondaryFire), beamRechargeTime);
+    }
+
+    private void ResetPrimaryFire()
     {
         alreadyFired = false;
+    }
+
+    private void ResetSecondaryFire()
+    {
+        alreadyFired = false;
+        beamFired = false;
     }
 
     private IEnumerator Dash()
