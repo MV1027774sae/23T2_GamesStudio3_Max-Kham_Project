@@ -4,21 +4,14 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-<<<<<<<< HEAD:Assets/Scripts/1. Player/Projectiles/BulletManager.cs
-    [SerializeField] private Transform tr; 
-
-    [SerializeField] private float lifeTime = 1;
-========
     [SerializeField] private GameObject explosion;
     [SerializeField] private Transform tr;
     
     [SerializeField] private float lifeTime;
->>>>>>>> main:Assets/Scripts/3. Projectiles/BulletManager.cs
     public int damage = 1;
 
     void Start()
     {
-        tr = this.GetComponent<Transform>();
         StartCoroutine(DeathDelay());
     }
 
@@ -36,9 +29,6 @@ public class BulletManager : MonoBehaviour
             Explode();
         }
 
-<<<<<<<< HEAD:Assets/Scripts/1. Player/Projectiles/BulletManager.cs
-        if(collision.tag == "Simple Collider")
-========
         if (collision.tag == "DestroyableObject")
         {
             collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
@@ -46,7 +36,6 @@ public class BulletManager : MonoBehaviour
         }
 
         if (collision.tag == "Simple Collider")
->>>>>>>> main:Assets/Scripts/3. Projectiles/BulletManager.cs
         {
             Explode();
         }
