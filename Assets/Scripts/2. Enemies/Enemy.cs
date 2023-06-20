@@ -11,23 +11,33 @@ public class Enemy : MonoBehaviour
 
     private bool canAttack = true;
     [SerializeField] private float attackRate = 1.5f;
-
     [SerializeField] private int damage = 1;
+
+    // Flashing effect variables
+    [SerializeField] private float flashDuration = 0.1f;
+    [SerializeField] private Color flashColor = Color.red;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+
+    // Exploding effect variables
+    public GameObject explosionPrefab;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
     }
 
     private void Update()
     {
-        if(!target)
+        if (!target)
         {
             GetTarget();
         }
         else
         {
-            RotateTorwardsTarget();
+            RotateTowardsTarget();
         }
     }
 
@@ -36,7 +46,7 @@ public class Enemy : MonoBehaviour
         rb.velocity = transform.up * speed;
     }
 
-    private void RotateTorwardsTarget()
+    private void RotateTowardsTarget()
     {
         Vector2 targetDirection = target.position - transform.position;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
@@ -50,18 +60,23 @@ public class Enemy : MonoBehaviour
         {
             target = GameObject.FindGameObjectWithTag("Player").transform;
         }
-        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Player") && canAttack)
+        if (other.gameObject.CompareTag("Player") && canAttack)
         {
             other.gameObject.GetComponent<PlayerStatManager>().DamagePlayer(damage);
             target = null;
             canAttack = false;
 
             StartCoroutine(ResetAttack());
+            StartCoroutine(FlashEffect());
+            Explode();
+        }
+        else if (other.gameObject.CompareTag("Bullet"))
+        {
+            StartCoroutine(FlashEffect());
         }
     }
 
@@ -70,4 +85,18 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(attackRate);
         canAttack = true;
     }
+
+    IEnumerator FlashEffect()
+    {
+        spriteRenderer.color = flashColor;
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor;
+    }
+
+    void Explode()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
 }
+
