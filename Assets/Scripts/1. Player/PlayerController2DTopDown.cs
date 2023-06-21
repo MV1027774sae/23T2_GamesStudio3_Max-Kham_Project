@@ -24,7 +24,9 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private GameObject secondaryFireObject;
     [SerializeField] private float beamVelocity = 40;
     [SerializeField] private float beamRechargeTime = 2f;
-    private bool beamFired;
+    private bool beamFired, canCharge;
+    [SerializeField] private float secondaryCharge;
+    private float secondaryChargeInterval = 0.02f;
 
     [Header("IFrames")]
     [SerializeField] private Color flashColor;
@@ -45,6 +47,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     {
         Application.targetFrameRate = fr;
         rb = GetComponent<Rigidbody2D>();
+        canCharge = true;
     }
 
     void Update()
@@ -62,9 +65,18 @@ public class PlayerController2DTopDown : MonoBehaviour
             PrimaryFire();
         }
 
-        if (Input.GetButtonDown("Fire2") && !alreadyFired && !beamFired)
+        if(Input.GetButton("Fire2") && !alreadyFired && canCharge)
         {
-            SecondaryFire();
+            ChargeSecondaryFire();
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            if(secondaryCharge >= 50 && !alreadyFired && !beamFired)
+            {
+                SecondaryFire();
+            }
+            secondaryCharge = 0;
         }
     }
 
@@ -108,6 +120,23 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         alreadyFired = true;
         Invoke(nameof(ResetPrimaryFire), timeBetweenFiring);
+    }
+
+    private void ChargeSecondaryFire()
+    {
+        secondaryCharge++;
+        canCharge = false;
+        Invoke(nameof(ResetChargeTime), secondaryChargeInterval);
+
+        if(secondaryCharge > 100)
+        {
+            secondaryCharge = 100;
+        }
+    }
+
+    private void ResetChargeTime()
+    {
+        canCharge = true;
     }
 
     private void SecondaryFire()
