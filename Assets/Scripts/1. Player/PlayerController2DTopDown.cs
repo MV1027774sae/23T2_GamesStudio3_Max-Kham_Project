@@ -203,7 +203,6 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     public IEnumerator FlashCo()
     {
-        //int temp = 0;
         Physics2D.IgnoreLayerCollision(3, 8, true);
         for (int i = 0; i < numberOfFlashes; i++)
         {

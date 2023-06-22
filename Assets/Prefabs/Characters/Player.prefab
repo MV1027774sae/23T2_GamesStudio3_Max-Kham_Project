@@ -252,12 +252,20 @@ MonoBehaviour:
   secondaryFireObject: {fileID: 6719320179536930201, guid: 52608f90d7e1b85458920aa0d09e0ea0, type: 3}
   beamVelocity: 40
   beamRechargeTime: 2
-  flashColor: {r: 1, g: 0.082352936, b: 0.17695124, a: 0.64705884}
-  regularColor: {r: 1, g: 1, b: 1, a: 0}
+  secondaryCharge: 0
+  dashStartEffect: {fileID: 8064191485725296137, guid: 62c021e6a2bbf2f4ea5e8acd90dddefe, type: 3}
+  dashEndEffect: {fileID: 8064191485725296137, guid: 62c021e6a2bbf2f4ea5e8acd90dddefe, type: 3}
   flashDuration: 0.07
-  numberOfFlashes: 4
+  numberOfFlashes: 2
   triggerCollider: {fileID: 3990326686506500180}
   mySprite: {fileID: 3907436532839486982}
+  hatSprite: {fileID: 4527357205702046995}
+  hatRimSprite: {fileID: 1264153789871096598}
+  regularColor: {r: 0.94509804, g: 0.83137256, b: 0.14509805, a: 1}
+  hatColor: {r: 0.6784314, g: 0.1764706, b: 0.85882354, a: 1}
+  flashColor: {r: 1, g: 0.082352936, b: 0.17695124, a: 0.64705884}
+  dashColor: {r: 1, g: 1, b: 1, a: 0}
+  dashParticles: {fileID: 3459912665463341560, guid: 13ec5c3768481a84a85b3e888c43be43, type: 3}
   rb: {fileID: 6654196349612785396}
   target: {fileID: 4515441961283792672}
   shootPoint: {fileID: 2212868491120503976}
