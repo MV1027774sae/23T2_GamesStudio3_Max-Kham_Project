@@ -2,12 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class SecondaryFireFrontCollider : MonoBehaviour
 {
+    [SerializeField] private float lifeTime = 3f;
     [SerializeField] private GameObject explosion;
-    
-    [SerializeField] private float lifeTime;
-    public int damage = 1;
+    [SerializeField] private GameObject parentObject;
 
     void Start()
     {
@@ -22,23 +21,10 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
-        {
-            collision.gameObject.GetComponent<EnemyHealthManager>().DamageEnemy(damage);
-            Explode();
-        }
-
-        if (collision.tag == "DestroyableObject")
-        {
-            collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
-            Explode();
-        }
-
         if (collision.tag == "Simple Collider")
         {
-            Explode();
+            parentObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
         }
-        else return;
     }
 
     private void Explode()

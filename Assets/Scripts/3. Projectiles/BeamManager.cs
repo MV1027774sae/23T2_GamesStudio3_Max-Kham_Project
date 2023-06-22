@@ -15,20 +15,19 @@ public class BeamManager : MonoBehaviour
             collision.gameObject.GetComponent<EnemyHealthManager>().DamageEnemy(damage);
             canAttack = false;
             Invoke(nameof(ResetAttack), attackRate);
-            Debug.Log("Detected Enemy Collision");
+        }
+
+        if (collision.tag == "DestroyableObject")
+        {
+            Debug.Log("Detected Destructible Object");
+            collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
+            canAttack = false;
+            Invoke(nameof(ResetAttack), attackRate);
         }
 
         if (collision.tag == "Simple Collider")
         {
             return;
-        }
-
-        if (collision.tag == "DestroyableObject" && canAttack)
-        {
-            collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
-            canAttack = false;
-            Invoke(nameof(ResetAttack), attackRate);
-
         }
         else return;
     }
