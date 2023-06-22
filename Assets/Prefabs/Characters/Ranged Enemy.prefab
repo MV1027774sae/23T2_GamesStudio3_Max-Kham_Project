@@ -156,8 +156,10 @@ MonoBehaviour:
   bulletPrefab: {fileID: 315185773048969004, guid: 87d33094892e48a4c928a70fdecaaa97, type: 3}
   distanceToShoot: 10
   distanceToStop: 5
+  damage: 1
   fireRate: 1
   firingPoint: {fileID: 7839068793292664019}
+  attackRate: 2
 --- !u!114 &4802557102025648581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   health: 2
+  flashDuration: 0.1
+  flashColor: {r: 0.990566, g: 0.990566, b: 0.990566, a: 1}
+  explosionPrefab: {fileID: 6478553177500169666, guid: 4fdc68bca55f8b343a7cbd5706476341, type: 3}
 --- !u!1 &7839068793292664016
 GameObject:
   m_ObjectHideFlags: 0
