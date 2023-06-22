@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 769832485596332012}
   - component: {fileID: 769832485596332013}
   - component: {fileID: -3427848126669390930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Melee Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -152,6 +152,8 @@ MonoBehaviour:
   target: {fileID: 0}
   speed: 3
   rotateSpeed: 5
+  attackRate: 1.5
+  damage: 1
 --- !u!114 &-3427848126669390930
 MonoBehaviour:
   m_ObjectHideFlags: 0

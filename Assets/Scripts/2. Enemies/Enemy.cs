@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool canAttack = true;
-    [SerializeField] private float attackRate = 1.5f;
+    [SerializeField] private float attackRate = 0.5f;
 
     [SerializeField] private int damage = 1;
 
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player") && canAttack)
         {

@@ -45,6 +45,7 @@ public class PlayerStatManager : MonoBehaviour
     public /*static*/ void DamagePlayer(int damage)
     {
         health -= damage;
+        playerController2DTopDown.StartCoroutine(playerController2DTopDown.FlashCo());
 
         if (health <= 0)
         {
