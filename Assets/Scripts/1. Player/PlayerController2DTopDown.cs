@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController2DTopDown : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     //dash
     private bool canDash = true;
     private bool isDashing;
-    [SerializeField] private float dashPower = 40f;
+    [SerializeField] private float dashPower = 30f;
     [SerializeField] private float dashTime = 0.1f;
     [SerializeField] private float dashCooldown = 1f;
 
@@ -29,12 +30,22 @@ public class PlayerController2DTopDown : MonoBehaviour
     private float secondaryChargeInterval = 0.02f;
 
     [Header("IFrames")]
-    [SerializeField] private Color flashColor;
-    [SerializeField] private Color regularColor;
-    [SerializeField] private float flashDuration = 0.7f;
+    [SerializeField] private GameObject dashStartEffect;
+    [SerializeField] private GameObject dashEndEffect;
+    [SerializeField] private float flashDuration = 2f;
     [SerializeField] private int numberOfFlashes = 4;
     [SerializeField] private Collider2D triggerCollider;
+
+    [Header("Sprites and Colours")]
     [SerializeField] private SpriteRenderer mySprite;
+    [SerializeField] private SpriteRenderer hatSprite;
+    [SerializeField] private SpriteRenderer hatRimSprite;
+    [SerializeField] private Color regularColor;
+    [SerializeField] private Color hatColor;
+    [SerializeField] private Color flashColor;
+    [SerializeField] private Color dashColor;
+    [SerializeField] private GameObject dashParticles;
+
 
     //declarations
     [SerializeField] private Rigidbody2D rb;
@@ -113,7 +124,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         Vector2 targetPosition = target.transform.localPosition;
 
         Vector2 aimDirection = targetPosition - rb.position;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(targetPosition.y, targetPosition.x) * Mathf.Rad2Deg;
 
         Rigidbody2D ball = Instantiate(primaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
         ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * shotVelocity;
@@ -170,27 +181,37 @@ public class PlayerController2DTopDown : MonoBehaviour
         canDash = false;
         isDashing = true;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y).normalized * dashPower;
-        triggerCollider.enabled = false;
+        mySprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
+        hatSprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
+        hatRimSprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
+        Instantiate(dashStartEffect, rb.position, Quaternion.identity);
+        GameObject particles = Instantiate(dashParticles, rb.position, Quaternion.identity);
+        particles.transform.SetParent(gameObject.transform);
+        Physics2D.IgnoreLayerCollision(3, 6, true);
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
         rb.velocity = new Vector2(0, 0);
-        triggerCollider.enabled = true;
+        mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
+        hatSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
+        hatRimSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
+        Instantiate(dashStartEffect, rb.position, Quaternion.identity);
+        Destroy(particles);
+        Physics2D.IgnoreLayerCollision(3, 6, false);
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 
     public IEnumerator FlashCo()
     {
-        int temp = 0;
-        triggerCollider.enabled = false;
-        while (temp < numberOfFlashes)
+        //int temp = 0;
+        Physics2D.IgnoreLayerCollision(3, 8, true);
+        for (int i = 0; i < numberOfFlashes; i++)
         {
-            mySprite.color = flashColor;
-            yield return new WaitForSeconds(flashDuration);
-            mySprite.color = regularColor;
-            yield return new WaitForSeconds(flashDuration);
-            temp++;
+            mySprite.color = new Color(flashColor.r, flashColor.g, flashColor.b, flashColor.a);
+            yield return new WaitForSeconds(flashDuration / (numberOfFlashes * flashDuration));
+            mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
+            yield return new WaitForSeconds(flashDuration / (numberOfFlashes * flashDuration));
         }
-        triggerCollider.enabled = true;
+        Physics2D.IgnoreLayerCollision(3, 8, false);
     }
 }
