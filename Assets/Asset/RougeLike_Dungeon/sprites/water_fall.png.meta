@@ -1,19 +1,16 @@
 fileFormatVersion: 2
-guid: 2c745b65fb728174a8d29c118b8ea525
+guid: f2d594227e52ec24691a78702f9e7eef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4065981183035352148
-    second: fire_torch_down_0
+      213: 384098516371859054
+    second: water_fall_0
   - first:
-      213: -7878755620071904650
-    second: fire_torch_down_1
+      213: -3535066195894958936
+    second: water_fall_1
   - first:
-      213: -2427219181158064298
-    second: fire_torch_down_2
-  - first:
-      213: -7572298839900698019
-    second: fire_torch_down_3
+      213: 2692922675154879413
+    second: water_fall_2
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -149,17 +146,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 1
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fire_torch_down_0
+      name: water_fall_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 29
-        height: 29
+        width: 10
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,20 +176,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ede320f3ed243d6469ee3142cf4da104
-      internalID: 4065981183035352148
+      spriteID: 996541339b152194985552ddc46f460d
+      internalID: 384098516371859054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fire_torch_down_1
+      name: water_fall_1
       rect:
         serializedVersion: 2
-        x: 29
+        x: 10
         y: 0
-        width: 29
-        height: 29
+        width: 10
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,20 +197,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51201f28f803ef14ca6232b1b74e4b5c
-      internalID: -7878755620071904650
+      spriteID: 31a56ab0b8f43c54ea644247e4bac063
+      internalID: -3535066195894958936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fire_torch_down_2
+      name: water_fall_2
       rect:
         serializedVersion: 2
-        x: 58
+        x: 20
         y: 0
-        width: 29
-        height: 29
+        width: 10
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,29 +218,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbdcb85f63df3c94a92dd986a7276f74
-      internalID: -2427219181158064298
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fire_torch_down_3
-      rect:
-        serializedVersion: 2
-        x: 87
-        y: 0
-        width: 29
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4a7527f8998520344806bb883c817dce
-      internalID: -7572298839900698019
+      spriteID: 945a1f2b6e203204ba7f70d46edf24d8
+      internalID: 2692922675154879413
       vertices: []
       indices: 
       edges: []
@@ -247,10 +235,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fire_torch_down_0: 4065981183035352148
-      fire_torch_down_1: -7878755620071904650
-      fire_torch_down_2: -2427219181158064298
-      fire_torch_down_3: -7572298839900698019
+      water_fall_0: 384098516371859054
+      water_fall_1: -3535066195894958936
+      water_fall_2: 2692922675154879413
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
