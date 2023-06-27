@@ -6,7 +6,7 @@ public class ObjectHealthManager : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 6;
     public int health = 0;
-
+    
     // Flashing effect variables
     [SerializeField] private float flashDuration = 0.1f;
     [SerializeField] private Color flashColor = Color.red;
@@ -15,6 +15,8 @@ public class ObjectHealthManager : MonoBehaviour
 
     // Exploding effect variables
     public GameObject explosionPrefab;
+
+    public GameObject healPoisonPrefab;
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class ObjectHealthManager : MonoBehaviour
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             DestroyObject();
+            SpawnHealPoison();
         }
     }
 
@@ -46,5 +49,10 @@ public class ObjectHealthManager : MonoBehaviour
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;
+    }
+
+    private void SpawnHealPoison()
+    {
+        Instantiate(healPoisonPrefab, transform.position, Quaternion.identity);
     }
 }

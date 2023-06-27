@@ -31,7 +31,7 @@ public class PlayerStatManager : MonoBehaviour
     public Sprite emptyHeart;
 
 
-    public TextMeshProUGUI healthTMPro;
+    //public TextMeshProUGUI healthTMPro;
 
     [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
 
@@ -87,6 +87,11 @@ public class PlayerStatManager : MonoBehaviour
         {
             KillPlayer();
         }
+    }
+
+    public void CollectPoison()
+    {
+        HealPlayer(1); // Heal the player by 1 heart
     }
 
     public /*static*/ void HealPlayer(int healAmount)
