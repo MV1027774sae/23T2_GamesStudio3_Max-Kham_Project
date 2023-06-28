@@ -51,6 +51,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject target;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform shootRotate;
+    private Camera mainCamera;
     private Quaternion rotation;
     private int fr = 60;
 
@@ -59,6 +61,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         Application.targetFrameRate = fr;
         rb = GetComponent<Rigidbody2D>();
         canCharge = true;
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     void Update()
@@ -69,6 +72,11 @@ public class PlayerController2DTopDown : MonoBehaviour
         }
 
         ProcessInputs();
+
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 aimDirection = (mouseWorldPosition - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        shootRotate.eulerAngles = new Vector3(0, 0, angle);
 
         //firing
         if (Input.GetButton("Fire1") && !alreadyFired && !beamFired)

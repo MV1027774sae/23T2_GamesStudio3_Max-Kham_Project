@@ -179,7 +179,7 @@ Transform:
   - {fileID: 2849035460196066518}
   - {fileID: 1166789368104532703}
   - {fileID: 721603846197742803}
-  - {fileID: 2212868491120503976}
+  - {fileID: 8626073709455890902}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -269,6 +269,7 @@ MonoBehaviour:
   rb: {fileID: 6654196349612785396}
   target: {fileID: 4515441961283792672}
   shootPoint: {fileID: 2212868491120503976}
+  shootRotate: {fileID: 8626073709455890902}
 --- !u!114 &8086402521218610376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +285,38 @@ MonoBehaviour:
   maxHealth: 4
   healthTMPro: {fileID: 0}
   playerController2DTopDown: {fileID: 24702290080191967}
+--- !u!1 &3649568447660710972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8626073709455890902}
+  m_Layer: 0
+  m_Name: Shoot Rotate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8626073709455890902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3649568447660710972}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2212868491120503976}
+  m_Father: {fileID: 2136561988399538601}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4515441961283792672
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,10 +607,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7842055451543116675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2136561988399538601}
-  m_RootOrder: 3
+  m_Father: {fileID: 8626073709455890902}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
