@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        // Add your code to start a new game here
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OpenOptions()
@@ -66,6 +67,11 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
         // Add your code to quit the game here
+    }
+
+    public void ClosePanel()
+    {
+       optionsPanel.SetActive(false);
     }
 }
 
