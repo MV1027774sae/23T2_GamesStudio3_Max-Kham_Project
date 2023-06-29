@@ -13,8 +13,8 @@ public class PlayerStatManager : MonoBehaviour
     //public int currentLevel = 0;
 
     //player stats
-    private /*static*/ int health = 4;
-    [SerializeField] private /*static*/ int maxHealth = 4;
+    //private /*static*/ int health = 4;
+    //[SerializeField] private /*static*/ int maxHealth = 4;
     //[SerializeField] private /*static*/ float moveSpeed = 5f;
     //[SerializeField] private /*static*/ float fireRate = 0.6f;
 
@@ -23,7 +23,15 @@ public class PlayerStatManager : MonoBehaviour
     //public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     //public static float FireRate { get => fireRate; set => fireRate = value; }
 
-    public TextMeshProUGUI healthTMPro;
+    public int health;
+    public int numOfHearts;
+
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+
+    //public TextMeshProUGUI healthTMPro;
 
     [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
 
@@ -34,13 +42,41 @@ public class PlayerStatManager : MonoBehaviour
         //    instance = this;
         //}
 
-        health = maxHealth;
+        playerController2DTopDown = GetComponent<PlayerController2DTopDown>();
+        health = numOfHearts;
     }
 
     void Update()
     {
-        healthTMPro.text = "Health: " + health.ToString();
+        //healthTMPro.text = "Health: " + health.ToString();
+
+        if(health > numOfHearts)
+        {
+            health = numOfHearts;
+        }
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+            {
+                hearts[i].sprite = fullHeart;
+            }
+            else
+            {
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if (i < numOfHearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
+            }
+        }
     }
+
 
     public /*static*/ void DamagePlayer(int damage)
     {
@@ -53,9 +89,14 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
+    public void CollectPoison()
+    {
+        HealPlayer(1); // Heal the player by 1 heart
+    }
+
     public /*static*/ void HealPlayer(int healAmount)
     {
-        health = Mathf.Min(maxHealth, health + healAmount);
+        health = Mathf.Min(numOfHearts, health + healAmount);
     }
 
     private /*static*/ void KillPlayer()
