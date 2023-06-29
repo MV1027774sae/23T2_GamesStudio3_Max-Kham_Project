@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController2DTopDown : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     private Vector2 moveDirection;
     //dash
     private bool canDash = true;
-    private bool isDashing;
+    private bool _isDashing;
     [SerializeField] private float dashPower = 30f;
     [SerializeField] private float dashTime = 0.1f;
     [SerializeField] private float dashCooldown = 1f;
@@ -19,15 +20,18 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private GameObject primaryFireObject;
     [SerializeField] private float shotVelocity = 20;
     [SerializeField] private float timeBetweenFiring = 0.4f;
-    private bool alreadyFired;
+    private bool _alreadyFired;
 
     [Header("Secondary Fire")]
-    [SerializeField] private GameObject secondaryFireObject;
-    [SerializeField] private float beamVelocity = 40;
     [SerializeField] private float beamRechargeTime = 2f;
-    private bool beamFired, canCharge;
     [SerializeField] private float secondaryCharge;
-    private float secondaryChargeInterval = 0.02f;
+    [SerializeField] private float beamDuration = 0.75f;
+    private float _secondaryChargeInterval = 0.02f;
+    private bool _beamFired, _canCharge;
+    [SerializeField] private BeamChargeSlider beamChargeSlider;
+    [SerializeField] private GameObject beamShootObject;
+    [SerializeField] private float chargeToFire = 30f;
+    public int bonusBeamDamage;
 
     [Header("IFrames")]
     [SerializeField] private GameObject dashStartEffect;
@@ -46,9 +50,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private Color dashColor;
     [SerializeField] private GameObject dashParticles;
 
-
-    //declarations
-    [SerializeField] private Rigidbody2D rb;
+    //object references
+    private Rigidbody2D rb;
     [SerializeField] private GameObject target;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform shootRotate;
@@ -60,13 +63,14 @@ public class PlayerController2DTopDown : MonoBehaviour
     {
         Application.targetFrameRate = fr;
         rb = GetComponent<Rigidbody2D>();
-        canCharge = true;
+        _canCharge = true;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        beamShootObject.SetActive(false);
     }
 
     void Update()
     {
-        if (isDashing)
+        if (_isDashing)
         {
             return;
         }
@@ -79,29 +83,31 @@ public class PlayerController2DTopDown : MonoBehaviour
         shootRotate.eulerAngles = new Vector3(0, 0, angle);
 
         //firing
-        if (Input.GetButton("Fire1") && !alreadyFired && !beamFired)
+        if (Input.GetButton("Fire1") && !_alreadyFired && !_beamFired)
         {
             PrimaryFire();
         }
 
-        if(Input.GetButton("Fire2") && !alreadyFired && canCharge)
+        if(Input.GetButton("Fire2") && !_alreadyFired && _canCharge)
         {
             ChargeSecondaryFire();
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
-            if(secondaryCharge >= 50 && !alreadyFired && !beamFired)
+            if(secondaryCharge >= chargeToFire && !_alreadyFired && !_beamFired)
             {
                 SecondaryFire();
             }
             secondaryCharge = 0;
+            beamChargeSlider.SetCharge(secondaryCharge);
+            bonusBeamDamage = 0;
         }
     }
 
     private void FixedUpdate()
     {
-        if (isDashing)
+        if (_isDashing)
         {
             return;
         }
@@ -137,17 +143,20 @@ public class PlayerController2DTopDown : MonoBehaviour
         Rigidbody2D ball = Instantiate(primaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
         ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * shotVelocity;
 
-        alreadyFired = true;
+        _alreadyFired = true;
         Invoke(nameof(ResetPrimaryFire), timeBetweenFiring);
     }
 
     private void ChargeSecondaryFire()
     {
-        secondaryCharge++;
-        canCharge = false;
-        Invoke(nameof(ResetChargeTime), secondaryChargeInterval);
+        beamChargeSlider.SetCharge(secondaryCharge);
 
-        if(secondaryCharge > 100)
+        secondaryCharge++;
+        bonusBeamDamage = Mathf.RoundToInt(secondaryCharge / 25);
+        _canCharge = false;
+        Invoke(nameof(ResetChargeTime), _secondaryChargeInterval);
+
+        if (secondaryCharge > 100)
         {
             secondaryCharge = 100;
         }
@@ -155,57 +164,83 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private void ResetChargeTime()
     {
-        canCharge = true;
+        _canCharge = true;
     }
 
     private void SecondaryFire()
     {
-        Vector2 targetPosition = target.transform.localPosition;
+        StartCoroutine(SecondaryFireAttack());
 
-        Vector2 aimDirection = targetPosition - rb.position;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        //Vector2 targetPosition = target.transform.localPosition;
 
-        Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
-        ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * beamVelocity;
+        //Vector2 aimDirection = targetPosition - rb.position;
+        //float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        alreadyFired = true;
-        beamFired = true;
+        //Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
+        //ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * beamVelocity;
+
+        _alreadyFired = true;
+        _beamFired = true;
         Invoke(nameof(ResetSecondaryFire), beamRechargeTime);
     }
 
     private void ResetPrimaryFire()
     {
-        alreadyFired = false;
+        _alreadyFired = false;
     }
 
     private void ResetSecondaryFire()
     {
-        alreadyFired = false;
-        beamFired = false;
+        _alreadyFired = false;
+        _beamFired = false;
     }
+
+    private IEnumerator SecondaryFireAttack()
+    {
+        beamShootObject.SetActive(true);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < beamDuration)
+        {
+            beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+
+        beamShootObject.SetActive(false);
+    }
+
 
     private IEnumerator Dash()
     {
         canDash = false;
-        isDashing = true;
+        _isDashing = true;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y).normalized * dashPower;
+
         mySprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
         hatSprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
         hatRimSprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
+
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
         GameObject particles = Instantiate(dashParticles, rb.position, Quaternion.identity);
         particles.transform.SetParent(gameObject.transform);
-        Physics2D.IgnoreLayerCollision(3, 6, true);
+
+        Physics2D.IgnoreLayerCollision(3, 8, true);
         yield return new WaitForSeconds(dashTime);
-        isDashing = false;
+
+        _isDashing = false;
         rb.velocity = new Vector2(0, 0);
+
         mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
         hatSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
         hatRimSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
+
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
         Destroy(particles);
-        Physics2D.IgnoreLayerCollision(3, 6, false);
+
+        Physics2D.IgnoreLayerCollision(3, 8, false);
         yield return new WaitForSeconds(dashCooldown);
+
         canDash = true;
     }
 
@@ -216,6 +251,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         {
             mySprite.color = new Color(flashColor.r, flashColor.g, flashColor.b, flashColor.a);
             yield return new WaitForSeconds(flashDuration / (numberOfFlashes * flashDuration));
+
             mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
             yield return new WaitForSeconds(flashDuration / (numberOfFlashes * flashDuration));
         }

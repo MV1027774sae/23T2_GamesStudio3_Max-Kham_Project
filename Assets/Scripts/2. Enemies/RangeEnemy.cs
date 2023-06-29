@@ -59,18 +59,33 @@ public class RangeEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (target != null) 
+        //if (target != null) 
+        //{
+        //    if (Vector2.Distance(target.position, transform.position) >= distanceToStop)
+        //    {
+        //        rb.velocity = transform.up * speed;
+        //    }
+        //    else
+        //    {
+        //        rb.velocity = Vector2.zero;
+        //    }
+        //}
+
+        if (target == null)
         {
-            if (Vector2.Distance(target.position, transform.position) >= distanceToStop)
-            {
-                rb.velocity = transform.up * speed;
-            }
-            else
-            {
-                rb.velocity = Vector2.zero;
-            }
+            return;
         }
-        
+
+        if (Vector2.Distance(target.position, transform.position) >= distanceToStop)
+        {
+            rb.velocity = transform.up * speed;
+        }
+        else
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+
     }
 
     private void RotateTorwardsTarget()
@@ -107,7 +122,7 @@ public class RangeEnemy : MonoBehaviour
         }
     }
 
-    IEnumerator ResetAttack()
+    private IEnumerator ResetAttack()
     {
         yield return new WaitForSeconds(attackRate);
         canAttack = true;
