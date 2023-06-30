@@ -10,7 +10,7 @@ public class SampledBeamSecond : MonoBehaviour
     private Transform m_transform;
     [SerializeField] private LayerMask simpleCollider;
 
-    [SerializeField] private int damage = 1;
+    [SerializeField] private float damage = 1;
     private PlayerController2DTopDown playerController2DTopDown;
 
     private void Awake()

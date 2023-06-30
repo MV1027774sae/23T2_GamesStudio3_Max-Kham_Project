@@ -31,7 +31,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private BeamChargeSlider beamChargeSlider;
     [SerializeField] private GameObject beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
-    public int bonusBeamDamage;
+    public float bonusBeamDamage;
 
     [Header("IFrames")]
     [SerializeField] private GameObject dashStartEffect;

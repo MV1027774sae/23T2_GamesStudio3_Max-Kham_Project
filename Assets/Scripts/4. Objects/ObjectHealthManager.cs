@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ObjectHealthManager : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 6;
-    public int health = 0;
+    [SerializeField] private float maxHealth = 6;
+    public float health = 0;
     
     // Flashing effect variables
     [SerializeField] private float flashDuration = 0.1f;
@@ -25,7 +25,7 @@ public class ObjectHealthManager : MonoBehaviour
         health = maxHealth;
     }
 
-    public void DamageObject(int damage)
+    public void DamageObject(float damage)
     {
         health -= damage;
         StartCoroutine(FlashEffect());

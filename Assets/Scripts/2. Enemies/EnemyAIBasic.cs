@@ -22,7 +22,7 @@ public class EnemyAIBasic : MonoBehaviour
     [SerializeField] private float attackRange = 1.2f;
     [SerializeField] private float attackRate = 1f;
 
-    [SerializeField] private int health = 2;
+    [SerializeField] private float health = 2;
 
     [SerializeField] private LayerMask simpleCollider;
 

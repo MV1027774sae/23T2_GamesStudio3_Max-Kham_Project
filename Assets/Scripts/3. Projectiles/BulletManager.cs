@@ -7,7 +7,7 @@ public class BulletManager : MonoBehaviour
     [SerializeField] private GameObject explosion;
     
     [SerializeField] private float lifeTime;
-    public int damage = 1;
+    public float damage = 1;
 
     void Start()
     {
