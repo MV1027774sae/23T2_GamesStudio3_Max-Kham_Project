@@ -15,6 +15,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
+        
         // Assign button click event handlers
         playButton.onClick.AddListener(PlayGame);
         continueButton.onClick.AddListener(ContinueGame);

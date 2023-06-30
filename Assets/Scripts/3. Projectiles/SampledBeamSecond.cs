@@ -10,7 +10,7 @@ public class SampledBeamSecond : MonoBehaviour
     private Transform m_transform;
     [SerializeField] private LayerMask simpleCollider;
 
-    [SerializeField] private float damage = 1;
+    [SerializeField] private float damage = 4;
     private PlayerController2DTopDown playerController2DTopDown;
 
     private void Awake()
@@ -21,19 +21,19 @@ public class SampledBeamSecond : MonoBehaviour
 
     public void ShootLaser()
     {
-        damage = (damage + playerController2DTopDown.bonusBeamDamage);
+        float beamDamage = (damage * playerController2DTopDown.secondaryDamageMultiplier) * Time.deltaTime;
 
         if (Physics2D.Raycast(m_transform.position, transform.right))
         {
             RaycastHit2D _hit = Physics2D.Raycast(m_transform.position, transform.right); 
             if (_hit.collider.tag == "Enemy")
             {
-                _hit.collider.gameObject.GetComponent<EnemyHealthManager>().DamageEnemy(damage);
+                _hit.collider.gameObject.GetComponent<EnemyHealthManager>().DamageEnemy(beamDamage);
             }
 
             if (_hit.collider.tag == "DestroyableObject")
             {
-                _hit.collider.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
+                _hit.collider.gameObject.GetComponent<ObjectHealthManager>().DamageObject(beamDamage);
             }
 
             if (_hit.collider.tag == "Simple Collider")
@@ -41,10 +41,10 @@ public class SampledBeamSecond : MonoBehaviour
                 Draw2DRay(laserFirePoint.position, _hit.point);
             }
         }
-        else
-        {
+        //else
+        //{
             Draw2DRay(laserFirePoint.position, laserFirePoint.transform.right * defDistanceRay);
-        }
+        //}
     }
 
     private void Draw2DRay(Vector2 startPos, Vector2 endPos)
