@@ -22,23 +22,28 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
-    private IEnumerator SpawnEnemy()
+    public IEnumerator SpawnEnemy()
     {
         WaitForSeconds wait = new WaitForSeconds(spawnRate);
+        int enemiesSpawned = 0; // Track the number of enemies spawned
 
-        while (canSpawn && totalEnemiesSpawned <= enemySpawnLimit)
+        while (canSpawn && enemiesSpawned < enemySpawnLimit)
         {
             yield return wait;
 
-            if (IsPlayerInsideSpawnRange())
-            {
-                int rand = Random.Range(0, spawnableEnemy.Length);
-                GameObject enemyToSpawn = spawnableEnemy[rand];
-                Vector3 spawnPosition = transform.position;
-                Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
-                totalEnemiesSpawned++;
-            }
+            int rand = Random.Range(0, spawnableEnemy.Length);
+            GameObject enemyToSpawn = spawnableEnemy[rand];
+
+            Instantiate(enemyToSpawn, GetRandomSpawnPosition(), Quaternion.identity);
+            enemiesSpawned++;
         }
+    }
+    private Vector3 GetRandomSpawnPosition()
+    {
+        float randomX = Random.Range(-spawnRange, spawnRange);
+        float randomY = Random.Range(-spawnRange, spawnRange);
+        Vector3 spawnPosition = transform.position + new Vector3(randomX, randomY, 0);
+        return spawnPosition;
     }
 
     private bool IsPlayerInsideSpawnRange()
