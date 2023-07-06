@@ -32,7 +32,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private BeamChargeSlider beamChargeSlider;
     [SerializeField] private GameObject beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
-    [SerializeField] private int secondaryMana, numMana;
+    public int secondaryMana;
+    [SerializeField] private int numMana;
     [SerializeField] private Sprite fullMana, emptyMana;
     [SerializeField] private Image[] mana;
 
@@ -295,5 +296,10 @@ public class PlayerController2DTopDown : MonoBehaviour
             yield return new WaitForSeconds(flashDuration / (numberOfFlashes * flashDuration));
         }
         Physics2D.IgnoreLayerCollision(3, 8, false);
+    }
+
+    public void AddMana()
+    {
+        secondaryMana++;
     }
 }

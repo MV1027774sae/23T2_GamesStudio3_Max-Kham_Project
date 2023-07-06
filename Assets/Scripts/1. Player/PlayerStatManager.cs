@@ -30,6 +30,8 @@ public class PlayerStatManager : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public int numOfKeys;
+    [SerializeField] private TextMeshProUGUI keysTMPro;
 
     //public TextMeshProUGUI healthTMPro;
 
@@ -44,6 +46,7 @@ public class PlayerStatManager : MonoBehaviour
 
         playerController2DTopDown = GetComponent<PlayerController2DTopDown>();
         health = numOfHearts;
+        ChangeKeyCount();
     }
 
     void Update()
@@ -103,5 +106,22 @@ public class PlayerStatManager : MonoBehaviour
     {
         Cursor.visible = true;
         SceneManager.LoadScene(1);
+    }
+
+    private void ChangeKeyCount()
+    {
+        keysTMPro.text = numOfKeys.ToString();
+    }
+
+    public void AddKey()
+    {
+        numOfKeys++;
+        ChangeKeyCount();
+    }
+
+    public void RemoveKey()
+    {
+        numOfKeys--;
+        ChangeKeyCount();
     }
 }
