@@ -23,8 +23,8 @@ public class PlayerStatManager : MonoBehaviour
     //public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
     //public static float FireRate { get => fireRate; set => fireRate = value; }
 
-    public int health;
-    public int numOfHearts;
+    public int health = 4;
+    public int numOfHearts = 4;
 
     public Image[] hearts;
     public Sprite fullHeart;

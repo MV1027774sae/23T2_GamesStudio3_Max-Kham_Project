@@ -32,8 +32,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private BeamChargeSlider beamChargeSlider;
     [SerializeField] private GameObject beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
-    public int secondaryMana;
-    [SerializeField] private int numMana;
+    public int secondaryMana = 0;
+    [SerializeField] private int numMana = 2;
     [SerializeField] private Sprite fullMana, emptyMana;
     [SerializeField] private Image[] mana;
 
@@ -71,7 +71,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         beamShootObject.SetActive(false);
         Physics2D.IgnoreLayerCollision(3, 8, false);
-        secondaryMana = numMana;
     }
 
     void Update()
