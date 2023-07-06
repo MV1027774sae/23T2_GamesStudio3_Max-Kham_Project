@@ -47,6 +47,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Projectile
+  - name: Environment
+    uniqueID: 4129836027
+    locked: 0
+  - name: Characters
+    uniqueID: 349708855
+    locked: 0
+  - name: Objects
+    uniqueID: 1196559611
+    locked: 0
+  - name: Projectiles
     uniqueID: 1516803445
+    locked: 0
+  - name: Walls
+    uniqueID: 3100795917
+    locked: 0
+  - name: Doors
+    uniqueID: 2738948525
+    locked: 0
+  - name: UI
+    uniqueID: 3477413117
     locked: 0
