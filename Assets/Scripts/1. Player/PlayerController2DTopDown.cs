@@ -25,19 +25,19 @@ public class PlayerController2DTopDown : MonoBehaviour
     [Header("Secondary Fire")]
     [SerializeField] private float beamRechargeTime = 2f;
     [SerializeField] private float secondaryCharge;
+    public float secondaryDamageMultiplier;
     [SerializeField] private float beamDuration = 0.75f;
     private float _secondaryChargeInterval = 0.02f;
     private bool _beamFired, _canCharge;
     [SerializeField] private BeamChargeSlider beamChargeSlider;
     [SerializeField] private GameObject beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
-    public float bonusBeamDamage;
 
     [Header("IFrames")]
     [SerializeField] private GameObject dashStartEffect;
     [SerializeField] private GameObject dashEndEffect;
-    [SerializeField] private float flashDuration = 2f;
-    [SerializeField] private int numberOfFlashes = 4;
+    [SerializeField] private float flashDuration = 0.2f;
+    [SerializeField] private int numberOfFlashes = 5;
     [SerializeField] private Collider2D triggerCollider;
 
     [Header("Sprites and Colours")]
@@ -66,6 +66,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         _canCharge = true;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         beamShootObject.SetActive(false);
+        Physics2D.IgnoreLayerCollision(3, 8, false);
     }
 
     void Update()
@@ -98,10 +99,10 @@ public class PlayerController2DTopDown : MonoBehaviour
             if(secondaryCharge >= chargeToFire && !_alreadyFired && !_beamFired)
             {
                 SecondaryFire();
+                secondaryDamageMultiplier = secondaryCharge / 100;
             }
             secondaryCharge = 0;
             beamChargeSlider.SetCharge(secondaryCharge);
-            bonusBeamDamage = 0;
         }
     }
 
@@ -150,9 +151,9 @@ public class PlayerController2DTopDown : MonoBehaviour
     private void ChargeSecondaryFire()
     {
         beamChargeSlider.SetCharge(secondaryCharge);
+        moveSpeed = 4;
 
         secondaryCharge++;
-        bonusBeamDamage = Mathf.RoundToInt(secondaryCharge / 25);
         _canCharge = false;
         Invoke(nameof(ResetChargeTime), _secondaryChargeInterval);
 
@@ -193,6 +194,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     {
         _alreadyFired = false;
         _beamFired = false;
+        secondaryDamageMultiplier = 0;
     }
 
     private IEnumerator SecondaryFireAttack()
@@ -205,7 +207,13 @@ public class PlayerController2DTopDown : MonoBehaviour
             beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
             yield return null;
             elapsedTime += Time.deltaTime;
+            
+            moveSpeed = 1;
+            canDash = false;
+            _alreadyFired = true;
         }
+        moveSpeed = 5;
+        canDash = true;
 
         beamShootObject.SetActive(false);
     }

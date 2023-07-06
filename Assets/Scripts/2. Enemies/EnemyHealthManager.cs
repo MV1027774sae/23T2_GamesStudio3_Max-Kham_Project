@@ -43,7 +43,6 @@ public class EnemyHealthManager : MonoBehaviour
 
     private IEnumerator FlashEffect()
     {
-        Debug.Log("Flash");
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;
