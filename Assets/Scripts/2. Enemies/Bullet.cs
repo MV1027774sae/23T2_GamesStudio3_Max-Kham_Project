@@ -20,7 +20,6 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = transform.up * speed;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,5 +36,10 @@ public class Bullet : MonoBehaviour
         }
 
         else return;
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }

@@ -32,6 +32,9 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private BeamChargeSlider beamChargeSlider;
     [SerializeField] private GameObject beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
+    [SerializeField] private int secondaryMana, numMana;
+    [SerializeField] private Sprite fullMana, emptyMana;
+    [SerializeField] private Image[] mana;
 
     [Header("IFrames")]
     [SerializeField] private GameObject dashStartEffect;
@@ -67,6 +70,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         beamShootObject.SetActive(false);
         Physics2D.IgnoreLayerCollision(3, 8, false);
+        secondaryMana = numMana;
     }
 
     void Update()
@@ -89,7 +93,7 @@ public class PlayerController2DTopDown : MonoBehaviour
             PrimaryFire();
         }
 
-        if(Input.GetButton("Fire2") && !_alreadyFired && _canCharge)
+        if(Input.GetButton("Fire2") && !_alreadyFired && _canCharge && secondaryMana > 0)
         {
             ChargeSecondaryFire();
         }
@@ -103,6 +107,32 @@ public class PlayerController2DTopDown : MonoBehaviour
             }
             secondaryCharge = 0;
             beamChargeSlider.SetCharge(secondaryCharge);
+        }
+
+        if (secondaryMana > numMana)
+        {
+            secondaryMana = numMana;
+        }
+
+        for (int i = 0; i < mana.Length; i++)
+        {
+            if (i < secondaryMana)
+            {
+                mana[i].sprite = fullMana;
+            }
+            else
+            {
+                mana[i].sprite = emptyMana;
+            }
+
+            if (i < numMana)
+            {
+                mana[i].enabled = true;
+            }
+            else
+            {
+                mana[i].enabled = false;
+            }
         }
     }
 
@@ -180,6 +210,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         //Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
         //ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * beamVelocity;
 
+        secondaryMana--;
         _alreadyFired = true;
         _beamFired = true;
         Invoke(nameof(ResetSecondaryFire), beamRechargeTime);

@@ -22,6 +22,7 @@ public class SampledBeamSecond : MonoBehaviour
     public void ShootLaser()
     {
         float beamDamage = (damage * playerController2DTopDown.secondaryDamageMultiplier) * Time.deltaTime;
+        Draw2DRay(laserFirePoint.position, laserFirePoint.transform.right * defDistanceRay);
 
         if (Physics2D.Raycast(m_transform.position, transform.right))
         {
@@ -36,15 +37,16 @@ public class SampledBeamSecond : MonoBehaviour
                 _hit.collider.gameObject.GetComponent<ObjectHealthManager>().DamageObject(beamDamage);
             }
 
+            if (_hit.collider.tag == "Enemy Bullet")
+            {
+                _hit.collider.gameObject.GetComponent<Bullet>().DestroySelf();
+            }
+
             if (_hit.collider.tag == "Simple Collider")
             {
                 Draw2DRay(laserFirePoint.position, _hit.point);
             }
         }
-        //else
-        //{
-            Draw2DRay(laserFirePoint.position, laserFirePoint.transform.right * defDistanceRay);
-        //}
     }
 
     private void Draw2DRay(Vector2 startPos, Vector2 endPos)
