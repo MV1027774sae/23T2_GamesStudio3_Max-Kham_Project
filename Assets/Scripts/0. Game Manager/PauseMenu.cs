@@ -18,7 +18,6 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = true;
         
         // Assign button click event handlers
-        playButton.onClick.AddListener(PlayGame);
         continueButton.onClick.AddListener(ContinueGame);
         optionsButton.onClick.AddListener(OpenOptions);
         quitButton.onClick.AddListener(QuitGame);
@@ -53,12 +52,6 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; // Resume the game
         isPaused = false;
-    }
-
-    public void PlayGame()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
     }
 
     public void OpenOptions()

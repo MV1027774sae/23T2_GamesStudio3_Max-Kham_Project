@@ -5,10 +5,11 @@ public class TilemapController : MonoBehaviour
 {
     public Tile closedDoorTile;
     public Tile openDoorTile;
-    public GameObject enemy;
     public Tilemap tilemap;
     public Transform teleportDestination;
     public BoxCollider2D doorCollider;
+
+    private bool isDeactivated = false;
 
     private void Start()
     {
@@ -18,18 +19,27 @@ public class TilemapController : MonoBehaviour
 
     private void Update()
     {
-        if (enemy == null)
+        if (!isDeactivated)
         {
-            // Change the tile to open door
-            tilemap.SwapTile(closedDoorTile, openDoorTile);
+            // Check if there are any enemies in the room
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemies.Length == 0)
+            {
+                // Change the tile to open door
+                tilemap.SwapTile(closedDoorTile, openDoorTile);
 
-            // Set the door collider as a trigger
-            doorCollider.isTrigger = true;
-        }
-        else
-        {
-            // Set the door collider as a solid obstacle
-            doorCollider.isTrigger = false;
+                // Set the door collider as a trigger
+                doorCollider.isTrigger = true;
+
+                // Deactivate the TilemapController
+                isDeactivated = true;
+                enabled = false;
+            }
+            else
+            {
+                // Set the door collider as a solid obstacle
+                doorCollider.isTrigger = false;
+            }
         }
     }
 
@@ -41,4 +51,25 @@ public class TilemapController : MonoBehaviour
             other.transform.position = teleportDestination.position;
         }
     }
-}
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
