@@ -25,12 +25,6 @@ public class RoomController : MonoBehaviour
                 enemy.SetActive(true);
             }
 
-            // Deactivate the TilemapController
-            if (tilemapController != null)
-            {
-                tilemapController.enabled = false;
-            }
-
             // Start the enemy spawner coroutine
             if (enemySpawner != null)
             {
@@ -39,6 +33,10 @@ public class RoomController : MonoBehaviour
         }
     }
 }
+
+
+
+
 
 
 
