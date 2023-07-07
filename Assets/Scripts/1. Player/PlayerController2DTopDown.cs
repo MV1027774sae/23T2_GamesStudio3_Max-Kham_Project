@@ -52,6 +52,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private Color hatColor;
     [SerializeField] private Color flashColor;
     [SerializeField] private Color dashColor;
+    [SerializeField] private Color dashCooldownSpriteColor;
+    [SerializeField] private Color dashCooldownHatColor;
     [SerializeField] private GameObject dashParticles;
 
     //object references
@@ -93,9 +95,10 @@ public class PlayerController2DTopDown : MonoBehaviour
             PrimaryFire();
         }
 
-        if(Input.GetButton("Fire2") && !_alreadyFired && _canCharge && secondaryMana > 0)
+        if (Input.GetButton("Fire2") && !_alreadyFired && _canCharge && secondaryMana > 0)
         {
             ChargeSecondaryFire();
+            beamChargeSlider.gameObject.SetActive(true);
         }
 
         if (Input.GetButtonUp("Fire2"))
@@ -107,6 +110,7 @@ public class PlayerController2DTopDown : MonoBehaviour
             }
             secondaryCharge = 0;
             beamChargeSlider.SetCharge(secondaryCharge);
+            beamChargeSlider.gameObject.SetActive(false);
         }
 
         if (secondaryMana > numMana)
@@ -270,15 +274,19 @@ public class PlayerController2DTopDown : MonoBehaviour
         _isDashing = false;
         rb.velocity = new Vector2(0, 0);
 
-        mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
-        hatSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
-        hatRimSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
+        mySprite.color = new Color(dashCooldownSpriteColor.r, dashCooldownSpriteColor.g, dashCooldownSpriteColor.b, dashCooldownSpriteColor.a);
+        hatSprite.color = new Color(dashCooldownHatColor.r, dashCooldownHatColor.g, dashCooldownHatColor.b, dashCooldownHatColor.a);
+        hatRimSprite.color = new Color(dashCooldownHatColor.r, dashCooldownHatColor.g, dashCooldownHatColor.b, dashCooldownHatColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
         Destroy(particles);
-
         Physics2D.IgnoreLayerCollision(3, 8, false);
+        
         yield return new WaitForSeconds(dashCooldown);
+        
+        mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
+        hatSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
+        hatRimSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
 
         canDash = true;
     }
