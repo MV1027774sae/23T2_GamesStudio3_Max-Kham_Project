@@ -46,10 +46,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     [Header("Sprites and Colours")]
     [SerializeField] private SpriteRenderer mySprite;
-    [SerializeField] private SpriteRenderer hatSprite;
-    [SerializeField] private SpriteRenderer hatRimSprite;
     [SerializeField] private Color regularColor;
-    [SerializeField] private Color hatColor;
     [SerializeField] private Color flashColor;
     [SerializeField] private Color dashColor;
     [SerializeField] private GameObject dashParticles;
@@ -257,8 +254,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y).normalized * dashPower;
 
         mySprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
-        hatSprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
-        hatRimSprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
         GameObject particles = Instantiate(dashParticles, rb.position, Quaternion.identity);
@@ -271,8 +266,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
 
         mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
-        hatSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
-        hatRimSprite.color = new Color(hatColor.r, hatColor.g, hatColor.b, hatColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
         Destroy(particles);
