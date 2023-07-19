@@ -49,6 +49,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private Color regularColor;
     [SerializeField] private Color flashColor;
     [SerializeField] private Color dashColor;
+    [SerializeField] private Color dashCooldownColor;
     [SerializeField] private GameObject dashParticles;
 
     //object references
@@ -252,7 +253,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         canDash = false;
         _isDashing = true;
         rb.velocity = new Vector2(moveDirection.x, moveDirection.y).normalized * dashPower;
-
         mySprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
@@ -264,8 +264,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         _isDashing = false;
         rb.velocity = new Vector2(0, 0);
-
-        mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
+        mySprite.color = new Color(dashCooldownColor.r, dashCooldownColor.g, dashCooldownColor.b, dashCooldownColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
         Destroy(particles);
@@ -274,6 +273,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
+        mySprite.color = new Color(regularColor.r, regularColor.g, regularColor.b, regularColor.a);
     }
 
     public IEnumerator FlashCo()
