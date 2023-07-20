@@ -35,8 +35,6 @@ public class RoomController : MonoBehaviour
                     StartCoroutine(spawner.SpawnEnemy());
                 }
             }
-
-            // Activate the trap shooters
             foreach (TrapShooter trapShooter in trapShooters)
             {
                 if (trapShooter != null)
@@ -47,6 +45,8 @@ public class RoomController : MonoBehaviour
         }
     }
 }
+
+
 
 
 
