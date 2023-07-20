@@ -13,6 +13,8 @@ public class TrapShooter : MonoBehaviour
 
     public Vector2 arrowDirection = Vector2.right; // Serialized variable for arrow direction
 
+    public bool trapActive = false; // Indicates whether the trap is active or not
+
     private float timeSinceLastShot; // Time elapsed since the last arrow shot
 
     void Start()
@@ -22,14 +24,17 @@ public class TrapShooter : MonoBehaviour
 
     void Update()
     {
-        // Increment the timer
-        timeSinceLastShot += Time.deltaTime;
-
-        // Check if enough time has passed to shoot another arrow
-        if (timeSinceLastShot >= shootingInterval)
+        if (trapActive)
         {
-            ShootArrow();
-            timeSinceLastShot = 0f;
+            // Increment the timer
+            timeSinceLastShot += Time.deltaTime;
+
+            // Check if enough time has passed to shoot another arrow
+            if (timeSinceLastShot >= shootingInterval)
+            {
+                ShootArrow();
+                timeSinceLastShot = 0f;
+            }
         }
     }
 
@@ -41,5 +46,12 @@ public class TrapShooter : MonoBehaviour
         Rigidbody2D rb = arrow.GetComponent<Rigidbody2D>();
         rb.AddForce(arrowDirection.normalized * shootingForce, ForceMode2D.Impulse); // Use arrowDirection as the force direction
     }
+
+    // Method to activate the trap and start shooting arrows
+    public void ActivateTrap()
+    {
+        trapActive = true;
+    }
 }
+
 

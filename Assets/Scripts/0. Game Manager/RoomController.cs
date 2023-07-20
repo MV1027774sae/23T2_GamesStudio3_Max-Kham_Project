@@ -4,7 +4,9 @@ public class RoomController : MonoBehaviour
 {
     public GameObject[] enemies; // Reference to the enemies in the room
     public TilemapController tilemapController; // Reference to the TilemapController script
-    public EnemySpawner enemySpawner; // Reference to the EnemySpawner script
+
+    public EnemySpawner[] enemySpawners; // Array to hold references to the EnemySpawner scripts
+    public TrapShooter[] trapShooters; // Array to hold references to the TrapShooter scripts
 
     private void Start()
     {
@@ -25,14 +27,28 @@ public class RoomController : MonoBehaviour
                 enemy.SetActive(true);
             }
 
-            // Start the enemy spawner coroutine
-            if (enemySpawner != null)
+            // Start the enemy spawner coroutines
+            foreach (EnemySpawner spawner in enemySpawners)
             {
-                StartCoroutine(enemySpawner.SpawnEnemy());
+                if (spawner != null)
+                {
+                    StartCoroutine(spawner.SpawnEnemy());
+                }
+            }
+
+            // Activate the trap shooters
+            foreach (TrapShooter trapShooter in trapShooters)
+            {
+                if (trapShooter != null)
+                {
+                    trapShooter.ActivateTrap();
+                }
             }
         }
     }
 }
+
+
 
 
 
