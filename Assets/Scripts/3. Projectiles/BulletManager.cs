@@ -33,10 +33,16 @@ public class BulletManager : MonoBehaviour
             DestroySelf();
         }
 
+        if (collision.tag == "StrongObject")
+        {
+            DestroySelf();
+        }
+
         if (collision.tag == "Simple Collider")
         {
             DestroySelf();
         }
+
         else return;
     }
 

@@ -445,7 +445,7 @@ MonoBehaviour:
   regularColor: {r: 1, g: 1, b: 1, a: 1}
   flashColor: {r: 1, g: 0.082352936, b: 0.17695124, a: 1}
   dashColor: {r: 1, g: 1, b: 1, a: 0}
-  dashCooldownColor: {r: 0, g: 0, b: 0, a: 0}
+  dashCooldownColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   dashParticles: {fileID: 3459912665463341560, guid: 13ec5c3768481a84a85b3e888c43be43, type: 3}
   target: {fileID: 4515441961283792672}
   shootPoint: {fileID: 2212868491120503976}
