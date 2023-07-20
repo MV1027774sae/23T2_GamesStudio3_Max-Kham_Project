@@ -9,7 +9,9 @@ public class TilemapController : MonoBehaviour
     public Transform teleportDestination;
     public BoxCollider2D doorCollider;
 
-    private bool isDeactivated = false;
+    public GameObject[] enemies;
+
+    private bool doorOpen = false;
 
     private void Start()
     {
@@ -19,39 +21,46 @@ public class TilemapController : MonoBehaviour
 
     private void Update()
     {
-        if (!isDeactivated)
+        // Check if there are any enemies in the room
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        bool hasEnemies = enemies.Length > 0;
+
+        if (hasEnemies && doorOpen)
         {
-            // Check if there are any enemies in the room
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-            if (enemies.Length == 0)
-            {
-                // Change the tile to open door
-                tilemap.SwapTile(closedDoorTile, openDoorTile);
-
-                // Set the door collider as a trigger
-                doorCollider.isTrigger = true;
-
-                // Deactivate the TilemapController
-                isDeactivated = true;
-                enabled = false;
-            }
-            else
-            {
-                // Set the door collider as a solid obstacle
-                doorCollider.isTrigger = false;
-            }
+            ChangeTile(closedDoorTile, false);
+            doorOpen = false;
+            Debug.Log("close the door");
         }
+        else if (!hasEnemies && !doorOpen)
+        {
+            ChangeTile(openDoorTile, true);
+            doorOpen = true;
+            Debug.Log("open the door");
+        }
+    }
+
+    private void ChangeTile(Tile tile, bool isTrigger)
+    {
+        tilemap.SwapTile(closedDoorTile, openDoorTile);
+        doorCollider.isTrigger = isTrigger;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // Teleport the player to the destination
             other.transform.position = teleportDestination.position;
         }
     }
-} 
+}
+
+
+
+
+
+
+
+
 
 
 
