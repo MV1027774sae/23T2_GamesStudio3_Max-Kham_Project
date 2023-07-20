@@ -12,11 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroScene.unity
     guid: ed7694956d06f1442aa9a56843f9024f
   - enabled: 1
-    path: Assets/Scenes/KhamWorkScene.unity
-    guid: e7a7467b288871441bcd07bb3f71a2a7
-  - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: f9f8f21676eaa954dab090f37558614b
+  - enabled: 1
+    path: Assets/Scenes/KhamWorkScene.unity
+    guid: e7a7467b288871441bcd07bb3f71a2a7
   - enabled: 1
     path: Assets/Scenes/PlaytestScene.unity
     guid: e8f5feccbac41cd43bb27166ac17b4ff

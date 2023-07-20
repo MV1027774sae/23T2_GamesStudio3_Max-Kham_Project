@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6149336596676263135}
   - component: {fileID: 8803396899903964406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1554610710517916057}
   - component: {fileID: 7336711030181671150}
   - component: {fileID: 6010194147415072293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Spawner
   m_TagString: DestroyableObject
   m_Icon: {fileID: 0}
