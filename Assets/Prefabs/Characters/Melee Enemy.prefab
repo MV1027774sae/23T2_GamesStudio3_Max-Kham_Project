@@ -168,4 +168,5 @@ MonoBehaviour:
   health: 0
   flashDuration: 0.1
   flashColor: {r: 1, g: 1, b: 1, a: 1}
+  spriteRenderer: {fileID: 769832485596332010}
   explosionPrefab: {fileID: 6478553177500169666, guid: 4fdc68bca55f8b343a7cbd5706476341, type: 3}

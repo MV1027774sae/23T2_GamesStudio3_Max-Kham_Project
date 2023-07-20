@@ -229,8 +229,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1166789368104532703}
   - component: {fileID: 3907436532839486982}
+  - component: {fileID: 7541926575094129549}
   m_Layer: 3
-  m_Name: Player Sprite
+  m_Name: Player GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,6 +304,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7541926575094129549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132388024280897069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23c512b0d5799964dbaea53cbb8715d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2982944950532384070
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,12 +442,10 @@ MonoBehaviour:
   numberOfFlashes: 5
   triggerCollider: {fileID: 3990326686506500180}
   mySprite: {fileID: 3907436532839486982}
-  hatSprite: {fileID: 0}
-  hatRimSprite: {fileID: 0}
   regularColor: {r: 1, g: 1, b: 1, a: 1}
-  hatColor: {r: 0.6784314, g: 0.1764706, b: 0.85882354, a: 1}
   flashColor: {r: 1, g: 0.082352936, b: 0.17695124, a: 1}
   dashColor: {r: 1, g: 1, b: 1, a: 0}
+  dashCooldownColor: {r: 0, g: 0, b: 0, a: 0}
   dashParticles: {fileID: 3459912665463341560, guid: 13ec5c3768481a84a85b3e888c43be43, type: 3}
   target: {fileID: 4515441961283792672}
   shootPoint: {fileID: 2212868491120503976}
