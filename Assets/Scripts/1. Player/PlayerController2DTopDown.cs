@@ -30,7 +30,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     private float _secondaryChargeInterval = 0.02f;
     private bool _beamFired, _canCharge;
     [SerializeField] private BeamChargeSlider beamChargeSlider;
-    [SerializeField] private GameObject beamShootObject;
+    [SerializeField] private LineRenderer beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
     public int secondaryMana = 0;
     [SerializeField] private int numMana = 2;
@@ -67,7 +67,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _canCharge = true;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        beamShootObject.SetActive(false);
+        beamShootObject.enabled = false;
         Physics2D.IgnoreLayerCollision(3, 8, false);
     }
 
@@ -228,7 +228,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private IEnumerator SecondaryFireAttack()
     {
-        beamShootObject.SetActive(true);
+        beamShootObject.enabled = true;
 
         float elapsedTime = 0f;
         while (elapsedTime < beamDuration)
@@ -244,7 +244,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         moveSpeed = 5;
         canDash = true;
 
-        beamShootObject.SetActive(false);
+        beamShootObject.enabled = false;
     }
 
 
@@ -260,6 +260,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         particles.transform.SetParent(gameObject.transform);
 
         Physics2D.IgnoreLayerCollision(3, 8, true);
+        Physics2D.IgnoreLayerCollision(3, 9, true);
         yield return new WaitForSeconds(dashTime);
 
         _isDashing = false;
@@ -270,6 +271,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         Destroy(particles);
 
         Physics2D.IgnoreLayerCollision(3, 8, false);
+        Physics2D.IgnoreLayerCollision(3, 9, false);
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
