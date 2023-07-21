@@ -26,6 +26,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private float beamRechargeTime = 2f;
     [SerializeField] private float secondaryCharge;
     public float secondaryDamageMultiplier;
+    [SerializeField] private GameObject secondaryFireObject;
+    [SerializeField] private float secondaryVelocity = 8;
     [SerializeField] private float beamDuration = 0.75f;
     private float _secondaryChargeInterval = 0.02f;
     private bool _beamFired, _canCharge;
@@ -198,15 +200,15 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private void SecondaryFire()
     {
-        StartCoroutine(SecondaryFireAttack());
+        //StartCoroutine(SecondaryFireAttack());
 
-        //Vector2 targetPosition = target.transform.localPosition;
+        Vector2 targetPosition = target.transform.localPosition;
 
-        //Vector2 aimDirection = targetPosition - rb.position;
-        //float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        Vector2 aimDirection = targetPosition - rb.position;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        //Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
-        //ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * beamVelocity;
+        Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
+        ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * secondaryVelocity;
 
         secondaryMana--;
         _alreadyFired = true;

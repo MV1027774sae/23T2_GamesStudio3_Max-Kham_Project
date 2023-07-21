@@ -17,7 +17,7 @@ public class RoomManager : MonoBehaviour
     {
         if (!_enemiesInRoom.Contains(GameObject.FindGameObjectWithTag("Enemy")))
         {
-            Debug.Log("No enemies remaining");
+            //Debug.Log("No enemies remaining");
         }
     }
 
