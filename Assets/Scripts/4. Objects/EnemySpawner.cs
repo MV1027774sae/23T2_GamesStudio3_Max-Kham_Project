@@ -52,11 +52,14 @@ public class EnemySpawner : MonoBehaviour
 
             yield return wait;
 
-            int rand = Random.Range(0, spawnableEnemy.Length);
-            GameObject enemyToSpawn = spawnableEnemy[rand];
+            if (canSpawn)
+            {
+                int rand = Random.Range(0, spawnableEnemy.Length);
+                GameObject enemyToSpawn = spawnableEnemy[rand];
 
-            Instantiate(enemyToSpawn, GetRandomSpawnPosition(), Quaternion.identity);
-            enemiesSpawned++;
+                Instantiate(enemyToSpawn, GetRandomSpawnPosition(), Quaternion.identity);
+                enemiesSpawned++;
+            }
         }
     }
 
