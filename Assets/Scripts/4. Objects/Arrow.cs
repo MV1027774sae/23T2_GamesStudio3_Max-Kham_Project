@@ -12,15 +12,16 @@ public class Arrow : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true; // Ensure the arrow is kinematic as it's a projectile
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // Check if the arrow collides with the player
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             // Get the PlayerStatManager component from the player
-            PlayerStatManager playerStatManager = collision.gameObject.GetComponent<PlayerStatManager>();
+            PlayerStatManager playerStatManager = other.gameObject.GetComponent<PlayerStatManager>();
 
             // Cause damage to the player's health
             playerStatManager.DamagePlayer(damageAmount);
@@ -29,16 +30,23 @@ public class Arrow : MonoBehaviour
             Vector2 pushbackDirection = rb.velocity.normalized;
 
             // Apply pushback force to the player's Rigidbody2D component
-            Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+            Rigidbody2D playerRb = other.gameObject.GetComponent<Rigidbody2D>();
             if (playerRb != null)
             {
                 playerRb.AddForce(pushbackDirection * pushbackForce, ForceMode2D.Impulse);
             }
-        }
 
-        // Destroy the arrow
-        Destroy(gameObject);
+            // Destroy the arrow
+            Destroy(gameObject);
+        }
+        else if (other.CompareTag("Enemy"))
+        {
+
+            // Destroy the arrow when it hits an enemy
+            Destroy(gameObject);
+        }
     }
 }
+
 
 

@@ -35,13 +35,7 @@ public class RoomController : MonoBehaviour
                     StartCoroutine(spawner.SpawnEnemy());
                 }
             }
-            foreach (TrapShooter trapShooter in trapShooters)
-            {
-                if (trapShooter != null)
-                {
-                    trapShooter.ActivateTrap();
-                }
-            }
+           
         }
     }
 }
