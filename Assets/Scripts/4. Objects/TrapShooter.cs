@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class TrapShooter : MonoBehaviour
 {
     public GameObject arrowPrefab; // Reference to the arrow prefab
