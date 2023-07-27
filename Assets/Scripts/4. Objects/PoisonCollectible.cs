@@ -12,7 +12,7 @@ public class PoisonCollectible : MonoBehaviour
             playerStatManager.CollectPoison();
 
             // Disable the poison object when collected
-            gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

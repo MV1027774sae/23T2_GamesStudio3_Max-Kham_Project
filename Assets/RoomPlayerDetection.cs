@@ -17,7 +17,6 @@ public class RoomPlayerDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Entered");
         if (collision.tag == "Player")
         {
             EnableEnemies();
@@ -26,7 +25,6 @@ public class RoomPlayerDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exited");
         if (collision.tag == "Player")
         {
             DisableEnemies();
