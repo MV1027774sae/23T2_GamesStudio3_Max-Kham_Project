@@ -32,12 +32,12 @@ public class PlayerController2DTopDown : MonoBehaviour
     private float _secondaryChargeInterval = 0.02f;
     private bool _beamFired, _canCharge;
     [SerializeField] private BeamChargeSlider beamChargeSlider;
-    [SerializeField] private LineRenderer beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
     public int secondaryMana = 0;
     [SerializeField] private int numMana = 2;
     [SerializeField] private Sprite fullMana, emptyMana;
     [SerializeField] private Image[] mana;
+    private GameObject _chargeSlider;
 
     [Header("IFrames")]
     [SerializeField] private GameObject dashStartEffect;
@@ -54,6 +54,11 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private Color dashCooldownColor;
     [SerializeField] private GameObject dashParticles;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip primaryShootSFX;
+    [SerializeField] private AudioClip secondaryShootSFX;
+    [SerializeField] private AudioSource audioSource;
+
     //object references
     private Rigidbody2D rb;
     [SerializeField] private GameObject target;
@@ -69,8 +74,10 @@ public class PlayerController2DTopDown : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _canCharge = true;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        beamShootObject.enabled = false;
+        _chargeSlider = GameObject.Find("Circle Slider");
+        //beamShootObject.enabled = false;
         Physics2D.IgnoreLayerCollision(3, 8, false);
+        _chargeSlider.SetActive(false);
     }
 
     void Update()
@@ -96,6 +103,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         if(Input.GetButton("Fire2") && !_alreadyFired && _canCharge && secondaryMana > 0)
         {
             ChargeSecondaryFire();
+            _chargeSlider.SetActive(true);
         }
 
         if (Input.GetButtonUp("Fire2"))
@@ -176,6 +184,8 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         _alreadyFired = true;
         Invoke(nameof(ResetPrimaryFire), timeBetweenFiring);
+
+        audioSource.PlayOneShot(primaryShootSFX);
     }
 
     private void ChargeSecondaryFire()
@@ -214,6 +224,9 @@ public class PlayerController2DTopDown : MonoBehaviour
         _alreadyFired = true;
         _beamFired = true;
         Invoke(nameof(ResetSecondaryFire), beamRechargeTime);
+
+        _chargeSlider.SetActive(false);
+        audioSource.PlayOneShot(secondaryShootSFX);
     }
 
     private void ResetPrimaryFire()
@@ -228,26 +241,26 @@ public class PlayerController2DTopDown : MonoBehaviour
         secondaryDamageMultiplier = 0;
     }
 
-    private IEnumerator SecondaryFireAttack()
-    {
-        beamShootObject.enabled = true;
+    //private IEnumerator SecondaryFireAttack()
+    //{
+        //beamShootObject.enabled = true;
 
-        float elapsedTime = 0f;
-        while (elapsedTime < beamDuration)
-        {
-            beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
-            yield return null;
-            elapsedTime += Time.deltaTime;
+        //float elapsedTime = 0f;
+        //while (elapsedTime < beamDuration)
+        //{
+        //    beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
+        //    yield return null;
+        //    elapsedTime += Time.deltaTime;
             
-            moveSpeed = 1;
-            canDash = false;
-            _alreadyFired = true;
-        }
-        moveSpeed = 5;
-        canDash = true;
+        //    moveSpeed = 1;
+        //    canDash = false;
+        //    _alreadyFired = true;
+        //}
+        //moveSpeed = 5;
+        //canDash = true;
 
-        beamShootObject.enabled = false;
-    }
+        //beamShootObject.enabled = false;
+    //}
 
 
     private IEnumerator Dash()
