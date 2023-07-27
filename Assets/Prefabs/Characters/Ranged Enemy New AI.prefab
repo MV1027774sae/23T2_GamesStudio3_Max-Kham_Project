@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7ac1ad60780ba499e67d802ad23e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
+  attackRange: 15
   attackRate: 2
   projectileVelocity: 8
   projectile: {fileID: 315185773048969004, guid: 132cbbc20d2f7b6489043f110472fd6a, type: 3}
