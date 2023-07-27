@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerController2DTopDown : MonoBehaviour
 {
     [Header ("Movement")]
-    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float moveSpeed = 6;
     private Vector2 moveDirection;
     //dash
     private bool canDash = true;
@@ -113,6 +113,8 @@ public class PlayerController2DTopDown : MonoBehaviour
                 SecondaryFire();
                 secondaryDamageMultiplier = secondaryCharge / 100;
             }
+
+            moveSpeed = 6;
             secondaryCharge = 0;
             beamChargeSlider.SetCharge(secondaryCharge);
         }
@@ -191,6 +193,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     private void ChargeSecondaryFire()
     {
         beamChargeSlider.SetCharge(secondaryCharge);
+
         moveSpeed = 4;
 
         secondaryCharge++;
@@ -215,11 +218,12 @@ public class PlayerController2DTopDown : MonoBehaviour
         Vector2 targetPosition = target.transform.localPosition;
 
         Vector2 aimDirection = targetPosition - rb.position;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(targetPosition.y, targetPosition.x) * Mathf.Rad2Deg;
 
         Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
         ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * secondaryVelocity;
 
+        
         secondaryMana--;
         _alreadyFired = true;
         _beamFired = true;
@@ -236,6 +240,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private void ResetSecondaryFire()
     {
+        canDash = true;
         _alreadyFired = false;
         _beamFired = false;
         secondaryDamageMultiplier = 0;
@@ -261,7 +266,6 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         //beamShootObject.enabled = false;
     //}
-
 
     private IEnumerator Dash()
     {

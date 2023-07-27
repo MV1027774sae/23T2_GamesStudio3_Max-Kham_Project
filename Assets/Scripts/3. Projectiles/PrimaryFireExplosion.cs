@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PrimaryFireExplosion : MonoBehaviour
 {
-    private float lifeTime = 0.3f;
+    [SerializeField] private float lifeTime = 0.3f;
     private AudioSource audioSource;
     [SerializeField] private AudioClip explosionSFX;
    
