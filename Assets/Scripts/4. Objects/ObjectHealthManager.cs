@@ -48,7 +48,6 @@ public class ObjectHealthManager : MonoBehaviour
     
     private IEnumerator FlashEffect()
     {
-        Debug.Log("Flash");
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;

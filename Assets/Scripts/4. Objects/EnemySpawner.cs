@@ -18,27 +18,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        // Start the spawning coroutine when the EnemySpawner is created
         StartCoroutine(SpawnEnemy());
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Player entered the spawn range.");
-    //        canSpawn = true;
-    //    }
-    //}
-
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Player exited the spawn range.");
-    //        canSpawn = false;
-    //    }
-    //}
 
     public IEnumerator SpawnEnemy()
     {
@@ -47,12 +28,9 @@ public class EnemySpawner : MonoBehaviour
 
         while (enemiesSpawned < enemySpawnLimit && canSpawn)
         {
-            // Wait until spawning is allowed and the player is inside the spawn range
-            //yield return new WaitUntil(() => canSpawn);
-
             yield return wait;
 
-            if (canSpawn)
+            if (canSpawn && this != null)
             {
                 int rand = Random.Range(0, spawnableEnemy.Length);
                 GameObject enemyToSpawn = spawnableEnemy[rand];
