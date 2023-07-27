@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerController2DTopDown : MonoBehaviour
 {
     [Header ("Movement")]
-    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float moveSpeed = 6;
     private Vector2 moveDirection;
     //dash
     private bool canDash = true;
@@ -26,16 +26,18 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private float beamRechargeTime = 2f;
     [SerializeField] private float secondaryCharge;
     public float secondaryDamageMultiplier;
+    [SerializeField] private GameObject secondaryFireObject;
+    [SerializeField] private float secondaryVelocity = 8;
     [SerializeField] private float beamDuration = 0.75f;
     private float _secondaryChargeInterval = 0.02f;
     private bool _beamFired, _canCharge;
     [SerializeField] private BeamChargeSlider beamChargeSlider;
-    [SerializeField] private LineRenderer beamShootObject;
     [SerializeField] private float chargeToFire = 30f;
     public int secondaryMana = 0;
     [SerializeField] private int numMana = 2;
     [SerializeField] private Sprite fullMana, emptyMana;
     [SerializeField] private Image[] mana;
+    private GameObject _chargeSlider;
 
     [Header("IFrames")]
     [SerializeField] private GameObject dashStartEffect;
@@ -52,6 +54,11 @@ public class PlayerController2DTopDown : MonoBehaviour
     [SerializeField] private Color dashCooldownColor;
     [SerializeField] private GameObject dashParticles;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip primaryShootSFX;
+    [SerializeField] private AudioClip secondaryShootSFX;
+    [SerializeField] private AudioSource audioSource;
+
     //object references
     private Rigidbody2D rb;
     [SerializeField] private GameObject target;
@@ -67,8 +74,10 @@ public class PlayerController2DTopDown : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         _canCharge = true;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        beamShootObject.enabled = false;
+        _chargeSlider = GameObject.Find("Circle Slider");
+        //beamShootObject.enabled = false;
         Physics2D.IgnoreLayerCollision(3, 8, false);
+        _chargeSlider.SetActive(false);
     }
 
     void Update()
@@ -94,6 +103,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         if(Input.GetButton("Fire2") && !_alreadyFired && _canCharge && secondaryMana > 0)
         {
             ChargeSecondaryFire();
+            _chargeSlider.SetActive(true);
         }
 
         if (Input.GetButtonUp("Fire2"))
@@ -103,6 +113,8 @@ public class PlayerController2DTopDown : MonoBehaviour
                 SecondaryFire();
                 secondaryDamageMultiplier = secondaryCharge / 100;
             }
+
+            moveSpeed = 6;
             secondaryCharge = 0;
             beamChargeSlider.SetCharge(secondaryCharge);
         }
@@ -174,11 +186,14 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         _alreadyFired = true;
         Invoke(nameof(ResetPrimaryFire), timeBetweenFiring);
+
+        audioSource.PlayOneShot(primaryShootSFX);
     }
 
     private void ChargeSecondaryFire()
     {
         beamChargeSlider.SetCharge(secondaryCharge);
+
         moveSpeed = 4;
 
         secondaryCharge++;
@@ -198,20 +213,24 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private void SecondaryFire()
     {
-        StartCoroutine(SecondaryFireAttack());
+        //StartCoroutine(SecondaryFireAttack());
 
-        //Vector2 targetPosition = target.transform.localPosition;
+        Vector2 targetPosition = target.transform.localPosition;
 
-        //Vector2 aimDirection = targetPosition - rb.position;
-        //float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        Vector2 aimDirection = targetPosition - rb.position;
+        float angle = Mathf.Atan2(targetPosition.y, targetPosition.x) * Mathf.Rad2Deg;
 
-        //Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
-        //ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * beamVelocity;
+        Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
+        ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * secondaryVelocity;
 
+        
         secondaryMana--;
         _alreadyFired = true;
         _beamFired = true;
         Invoke(nameof(ResetSecondaryFire), beamRechargeTime);
+
+        _chargeSlider.SetActive(false);
+        audioSource.PlayOneShot(secondaryShootSFX);
     }
 
     private void ResetPrimaryFire()
@@ -221,32 +240,32 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private void ResetSecondaryFire()
     {
+        canDash = true;
         _alreadyFired = false;
         _beamFired = false;
         secondaryDamageMultiplier = 0;
     }
 
-    private IEnumerator SecondaryFireAttack()
-    {
-        beamShootObject.enabled = true;
+    //private IEnumerator SecondaryFireAttack()
+    //{
+        //beamShootObject.enabled = true;
 
-        float elapsedTime = 0f;
-        while (elapsedTime < beamDuration)
-        {
-            beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
-            yield return null;
-            elapsedTime += Time.deltaTime;
+        //float elapsedTime = 0f;
+        //while (elapsedTime < beamDuration)
+        //{
+        //    beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
+        //    yield return null;
+        //    elapsedTime += Time.deltaTime;
             
-            moveSpeed = 1;
-            canDash = false;
-            _alreadyFired = true;
-        }
-        moveSpeed = 5;
-        canDash = true;
+        //    moveSpeed = 1;
+        //    canDash = false;
+        //    _alreadyFired = true;
+        //}
+        //moveSpeed = 5;
+        //canDash = true;
 
-        beamShootObject.enabled = false;
-    }
-
+        //beamShootObject.enabled = false;
+    //}
 
     private IEnumerator Dash()
     {
