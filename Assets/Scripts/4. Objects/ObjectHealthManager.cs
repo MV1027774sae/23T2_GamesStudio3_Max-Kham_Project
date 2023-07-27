@@ -34,7 +34,10 @@ public class ObjectHealthManager : MonoBehaviour
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             DestroyObject();
-            SpawnHealPoison();
+            if (healPoisonPrefab != null)
+            {
+                SpawnHealPoison();
+            }
         }
     }
 
