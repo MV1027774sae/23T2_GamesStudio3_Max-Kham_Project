@@ -18,13 +18,6 @@ public class Spiketrap : MonoBehaviour
 
     private void DamageAndPushbackPlayer(GameObject player)
     {
-        // Apply damage to the player
-        PlayerStatManager playerStats = player.GetComponent<PlayerStatManager>();
-        if (playerStats != null)
-        {
-            playerStats.DamagePlayer(damageAmount);
-        }
-
         // Calculate the pushback direction from the trap to the player
         Vector2 pushbackDirection = player.transform.position - transform.position;
         pushbackDirection = pushbackDirection.normalized;
@@ -35,6 +28,13 @@ public class Spiketrap : MonoBehaviour
         {
             playerRb.MovePosition(playerRb.position + pushbackDirection * pushbackForce * Time.fixedDeltaTime);
         }
+        // Apply damage to the player
+        PlayerStatManager playerStats = player.GetComponent<PlayerStatManager>();
+        if (playerStats != null)
+        {
+            playerStats.DamagePlayer(damageAmount);
+        }
+
     }
 }
 

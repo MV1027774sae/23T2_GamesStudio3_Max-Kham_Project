@@ -28,13 +28,12 @@ public class PlayerController2DTopDown : MonoBehaviour
     public float secondaryDamageMultiplier;
     [SerializeField] private GameObject secondaryFireObject;
     [SerializeField] private float secondaryVelocity = 8;
-    [SerializeField] private float beamDuration = 0.75f;
     private float _secondaryChargeInterval = 0.02f;
     private bool _beamFired, _canCharge;
     [SerializeField] private BeamChargeSlider beamChargeSlider;
     [SerializeField] private float chargeToFire = 30f;
     public int secondaryMana = 0;
-    [SerializeField] private int numMana = 2;
+    private int numMana = 2;
     [SerializeField] private Sprite fullMana, emptyMana;
     [SerializeField] private Image[] mana;
     private GameObject _chargeSlider;
@@ -117,6 +116,7 @@ public class PlayerController2DTopDown : MonoBehaviour
             moveSpeed = 6;
             secondaryCharge = 0;
             beamChargeSlider.SetCharge(secondaryCharge);
+            _chargeSlider.SetActive(false);
         }
 
         if (secondaryMana > numMana)
@@ -229,7 +229,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         _beamFired = true;
         Invoke(nameof(ResetSecondaryFire), beamRechargeTime);
 
-        _chargeSlider.SetActive(false);
+        
         audioSource.PlayOneShot(secondaryShootSFX);
     }
 
@@ -246,26 +246,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         secondaryDamageMultiplier = 0;
     }
 
-    //private IEnumerator SecondaryFireAttack()
-    //{
-        //beamShootObject.enabled = true;
-
-        //float elapsedTime = 0f;
-        //while (elapsedTime < beamDuration)
-        //{
-        //    beamShootObject.GetComponent<SampledBeamSecond>().ShootLaser();
-        //    yield return null;
-        //    elapsedTime += Time.deltaTime;
-            
-        //    moveSpeed = 1;
-        //    canDash = false;
-        //    _alreadyFired = true;
-        //}
-        //moveSpeed = 5;
-        //canDash = true;
-
-        //beamShootObject.enabled = false;
-    //}
 
     private IEnumerator Dash()
     {
@@ -280,6 +260,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(3, 8, true);
         Physics2D.IgnoreLayerCollision(3, 9, true);
+        Physics2D.IgnoreLayerCollision(3, 10, true);
         yield return new WaitForSeconds(dashTime);
 
         _isDashing = false;
@@ -291,6 +272,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         Physics2D.IgnoreLayerCollision(3, 8, false);
         Physics2D.IgnoreLayerCollision(3, 9, false);
+        Physics2D.IgnoreLayerCollision(3, 10, false);
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;
@@ -300,6 +282,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     public IEnumerator FlashCo()
     {
         Physics2D.IgnoreLayerCollision(3, 8, true);
+        Physics2D.IgnoreLayerCollision(3, 10, true);
         for (int i = 0; i < numberOfFlashes; i++)
         {
             mySprite.color = new Color(flashColor.r, flashColor.g, flashColor.b, flashColor.a);
@@ -309,6 +292,7 @@ public class PlayerController2DTopDown : MonoBehaviour
             yield return new WaitForSeconds(flashDuration / (numberOfFlashes * flashDuration));
         }
         Physics2D.IgnoreLayerCollision(3, 8, false);
+        Physics2D.IgnoreLayerCollision(3, 10, false);
     }
 
     public void AddMana()

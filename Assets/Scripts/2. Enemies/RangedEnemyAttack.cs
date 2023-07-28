@@ -23,9 +23,9 @@ public class RangedEnemyAttack : MonoBehaviour
 
     void Update()
     {
-        Vector3 aimDirection = (_target.transform.position - transform.position).normalized;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
-        shootPoint.eulerAngles = new Vector3(0, 0, angle);
+        //Vector3 aimDirection = (_target.transform.position - transform.position).normalized;
+        //float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        //shootPoint.eulerAngles = new Vector3(0, 0, angle);
 
         if (_target != null && _canAttack && Vector2.Distance(_target.transform.position, transform.position) <= attackRange)
         {
@@ -34,14 +34,18 @@ public class RangedEnemyAttack : MonoBehaviour
     }
 
     private void RangedAttack()
-    {   
-        Vector2 targetPosition = _target.transform.localPosition;
+    {
+        Vector3 aimDirection = (_target.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        shootPoint.eulerAngles = new Vector3(0, 0, angle);
 
-        Vector2 aimDirection = targetPosition - rb.position;
-        float angle = Mathf.Atan2(targetPosition.y, targetPosition.x) * Mathf.Rad2Deg;
+        //Vector2 targetPosition = _target.transform.localPosition;
+
+        //Vector2 aimDirection = targetPosition - rb.position;
+        //float angle = Mathf.Atan2(targetPosition.y, targetPosition.x) * Mathf.Rad2Deg;
 
         Rigidbody2D ball = Instantiate(projectile, shootPointPosition.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
-        ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * projectileVelocity;
+        ball.velocity = new Vector2(aimDirection.x, aimDirection.y).normalized * projectileVelocity;
 
         _canAttack = false;
         Invoke(nameof(ResetRangedAttack), attackRate);

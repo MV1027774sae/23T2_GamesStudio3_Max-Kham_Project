@@ -34,7 +34,7 @@ public class FireballManager : MonoBehaviour
         if (collision.tag == "Enemy" || collision.tag == "DestroyableObject" || collision.tag == "StrongObject" || collision.tag == "Simple Collider")
         {
             hitPositionForGizmoDrawing = collision.gameObject.transform.position;
-            Collider2D[] targetsHit = Physics2D.OverlapCircleAll(transform.position, damageRadius, targetLayermask);
+            Collider2D[] targetsHit = Physics2D.OverlapCircleAll(transform.position, explosionRadius, targetLayermask);
             {
                 foreach(Collider2D target in targetsHit)
                 {

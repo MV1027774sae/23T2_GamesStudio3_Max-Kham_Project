@@ -503,7 +503,7 @@ MonoBehaviour:
   primaryFireObject: {fileID: 7524095996251379231, guid: f7f833c9ebf1e9741a7237da5ebfba1f, type: 3}
   shotVelocity: 10
   timeBetweenFiring: 0.4
-  beamRechargeTime: 2
+  beamRechargeTime: 1
   secondaryCharge: 0
   secondaryDamageMultiplier: 0
   secondaryFireObject: {fileID: 8826369524300985483, guid: 5d2697f4ba417974288bcedcdd0e9554, type: 3}
