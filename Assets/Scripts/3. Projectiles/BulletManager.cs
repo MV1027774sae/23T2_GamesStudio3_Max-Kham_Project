@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    [SerializeField] private GameObject explosion;
-    
-    [SerializeField] private float lifeTime;
     public float damage = 1;
+    [SerializeField] private float lifeTime;
+    [SerializeField] private GameObject explosion;
 
     void Start()
     {
@@ -17,7 +16,7 @@ public class BulletManager : MonoBehaviour
     IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(lifeTime);
-        Explode();
+        DestroySelf();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -25,23 +24,29 @@ public class BulletManager : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             collision.gameObject.GetComponent<EnemyHealthManager>().DamageEnemy(damage);
-            Explode();
+            DestroySelf();
         }
 
         if (collision.tag == "DestroyableObject")
         {
             collision.gameObject.GetComponent<ObjectHealthManager>().DamageObject(damage);
-            Explode();
+            DestroySelf();
+        }
+
+        if (collision.tag == "StrongObject")
+        {
+            DestroySelf();
         }
 
         if (collision.tag == "Simple Collider")
         {
-            Explode();
+            DestroySelf();
         }
+
         else return;
     }
 
-    private void Explode()
+    private void DestroySelf()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);

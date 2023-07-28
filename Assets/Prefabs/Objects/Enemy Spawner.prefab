@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6149336596676263135}
   - component: {fileID: 8803396899903964406}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 343663083775981259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1588290764856481962}
   m_RootOrder: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1196559611
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.86737067, g: 0.2688679, b: 1, a: 0.3137255}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1554610710517916057}
   - component: {fileID: 7336711030181671150}
   - component: {fileID: 6010194147415072293}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Spawner
   m_TagString: DestroyableObject
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1196559611
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.601925, g: 1, b: 0, a: 1}
   m_FlipX: 0

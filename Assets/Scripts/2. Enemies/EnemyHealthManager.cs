@@ -10,7 +10,7 @@ public class EnemyHealthManager : MonoBehaviour
     // Flashing effect variables
     [SerializeField] private float flashDuration = 0.1f;
     [SerializeField] private Color flashColor = Color.red;
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     private Color originalColor;
 
     // Exploding effect variables
@@ -19,7 +19,6 @@ public class EnemyHealthManager : MonoBehaviour
     
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
         health = maxHealth;
     }

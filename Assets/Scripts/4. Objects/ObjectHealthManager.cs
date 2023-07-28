@@ -34,7 +34,10 @@ public class ObjectHealthManager : MonoBehaviour
         {
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             DestroyObject();
-            SpawnHealPoison();
+            if (healPoisonPrefab != null)
+            {
+                SpawnHealPoison();
+            }
         }
     }
 
@@ -45,7 +48,6 @@ public class ObjectHealthManager : MonoBehaviour
     
     private IEnumerator FlashEffect()
     {
-        Debug.Log("Flash");
         spriteRenderer.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;
