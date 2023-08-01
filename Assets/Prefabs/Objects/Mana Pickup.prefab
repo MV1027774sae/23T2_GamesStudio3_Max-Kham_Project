@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4810409713511906088}
   - component: {fileID: 5332210226307434056}
   - component: {fileID: -4140195127647855981}
+  - component: {fileID: 1976239405062882876}
   m_Layer: 0
   m_Name: Mana Pickup
   m_TagString: Untagged
@@ -29,10 +30,9 @@ Transform:
   m_GameObject: {fileID: 6552749134430896535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.5, y: 7.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 953069693497469329}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 1196559611
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2097279626, guid: 497877696662aee47ba7434638be1ea7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ff7c11c44266a343b701f7f1a82203d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,7 +103,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.05
+  m_Radius: 0.5
 --- !u!50 &5332210226307434056
 Rigidbody2D:
   serializedVersion: 4
@@ -137,45 +137,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29351450c94b72347b421bb61a3b013f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &7223070183590782151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 953069693497469329}
-  - component: {fileID: 2823283497765637020}
-  m_Layer: 0
-  m_Name: Light 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &953069693497469329
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7223070183590782151}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4377996232985715750}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2823283497765637020
+--- !u!114 &1976239405062882876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7223070183590782151}
+  m_GameObject: {fileID: 6552749134430896535}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
@@ -186,7 +154,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.6
   m_Color: {r: 0, g: 1, b: 0.86225843, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000fb4b28f63722d814fb0c52477595685a0d64d2b8ad0941a3fd1c45cf
