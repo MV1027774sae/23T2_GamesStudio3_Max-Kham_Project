@@ -551,6 +551,8 @@ MonoBehaviour:
   dashParticles: {fileID: 3459912665463341560, guid: 13ec5c3768481a84a85b3e888c43be43, type: 3}
   primaryShootSFX: {fileID: 8300000, guid: 9b17ce642e60e6b4a803b8a195f09197, type: 3}
   secondaryShootSFX: {fileID: 8300000, guid: 7163249060cf8a741a1ef7c74568fcc7, type: 3}
+  teleportStart: {fileID: 8300000, guid: ff871e95b186956459cd4e8f4d4b4390, type: 3}
+  teleportEnd: {fileID: 8300000, guid: 6e4c4b26b5c77dd449740e2068f70ca7, type: 3}
   audioSource: {fileID: 7551554410503001765}
   target: {fileID: 4515441961283792672}
   shootPoint: {fileID: 2212868491120503976}

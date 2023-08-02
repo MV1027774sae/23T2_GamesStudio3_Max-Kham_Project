@@ -56,6 +56,8 @@ public class PlayerController2DTopDown : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip primaryShootSFX;
     [SerializeField] private AudioClip secondaryShootSFX;
+    [SerializeField] private AudioClip teleportStart;
+    [SerializeField] private AudioClip teleportEnd;
     [SerializeField] private AudioSource audioSource;
 
     //object references
@@ -255,6 +257,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         mySprite.color = new Color(dashColor.r, dashColor.g, dashColor.b, dashColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
+        audioSource.PlayOneShot(teleportStart);
         GameObject particles = Instantiate(dashParticles, rb.position, Quaternion.identity);
         particles.transform.SetParent(gameObject.transform);
 
@@ -268,6 +271,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         mySprite.color = new Color(dashCooldownColor.r, dashCooldownColor.g, dashCooldownColor.b, dashCooldownColor.a);
 
         Instantiate(dashStartEffect, rb.position, Quaternion.identity);
+        audioSource.PlayOneShot(teleportEnd);
         Destroy(particles);
 
         Physics2D.IgnoreLayerCollision(3, 8, false);
