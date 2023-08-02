@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 3907436532839486982}
   - component: {fileID: 7541926575094129549}
   - component: {fileID: 5560241233541772401}
+  - component: {fileID: 7841781752134940179}
   m_Layer: 3
   m_Name: Player GFX
   m_TagString: Untagged
@@ -396,6 +397,27 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!95 &7841781752134940179
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132388024280897069}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9548349c518272459af81f8738a0c66, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2982944950532384070
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,11 +530,9 @@ MonoBehaviour:
   secondaryDamageMultiplier: 0
   secondaryFireObject: {fileID: 8826369524300985483, guid: 5d2697f4ba417974288bcedcdd0e9554, type: 3}
   secondaryVelocity: 8
-  beamDuration: 0.75
   beamChargeSlider: {fileID: 832362787097731137}
   chargeToFire: 30
   secondaryMana: 0
-  numMana: 2
   fullMana: {fileID: -3983950619504736678, guid: 74f8b4d56cb24724abef2f7c526fd9ca, type: 3}
   emptyMana: {fileID: -9176472066801411641, guid: 74f8b4d56cb24724abef2f7c526fd9ca, type: 3}
   mana:

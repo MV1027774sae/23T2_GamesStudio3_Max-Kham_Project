@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 5807984678285662891}
   - component: {fileID: 5807984678285662900}
   - component: {fileID: 4515513258046022705}
+  - component: {fileID: 1297120688382638971}
   m_Layer: 8
   m_Name: Ranged Enemy GFX
   m_TagString: Untagged
@@ -453,3 +454,24 @@ MonoBehaviour:
   - {x: 0.5, y: -1, z: 0}
   - {x: 0.5, y: 1, z: 0}
   - {x: -0.5, y: 1, z: 0}
+--- !u!95 &1297120688382638971
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5807984678285662889}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ab8e0011527360c4d9cd5d1f51c70f71, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
