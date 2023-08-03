@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class PlayerStatManager : MonoBehaviour
 {
@@ -33,11 +34,11 @@ public class PlayerStatManager : MonoBehaviour
     public int numOfKeys;
     [SerializeField] private TextMeshProUGUI keysTMPro;
 
-    //public TextMeshProUGUI healthTMPro;
+    private GameObject gameOverMenu;
 
     [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
 
-    void Awake()
+    void Start()
     {
         //if(instance == null)
         //{
@@ -46,6 +47,7 @@ public class PlayerStatManager : MonoBehaviour
 
         playerController2DTopDown = GetComponent<PlayerController2DTopDown>();
         health = numOfHearts;
+        gameOverMenu = GameObject.Find("GameOverMenu");
         ChangeKeyCount();
     }
 
@@ -105,7 +107,7 @@ public class PlayerStatManager : MonoBehaviour
     private /*static*/ void KillPlayer()
     {
         Cursor.visible = true;
-        SceneManager.LoadScene(1);
+        gameOverMenu.GetComponent<GameOverMenu>().GameOver();
     }
 
     private void ChangeKeyCount()

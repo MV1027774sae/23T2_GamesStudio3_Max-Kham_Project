@@ -15,7 +15,7 @@ public class EnemyGFX : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("speed", Mathf.Abs(aiPath.desiredVelocity.x));
+        animator.SetFloat("speed", Mathf.Abs(aiPath.desiredVelocity.magnitude));
 
         if(aiPath.desiredVelocity.x >= 0.01f)
         {
