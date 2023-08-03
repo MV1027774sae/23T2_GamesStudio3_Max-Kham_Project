@@ -34,27 +34,20 @@ public class PlayerStatManager : MonoBehaviour
     public int numOfKeys;
     [SerializeField] private TextMeshProUGUI keysTMPro;
 
-    private GameObject gameOverMenu;
-
+    [SerializeField] private GameOverMenu gameOverMenu;
     [SerializeField] private PlayerController2DTopDown playerController2DTopDown;
 
     void Start()
     {
-        //if(instance == null)
-        //{
-        //    instance = this;
-        //}
-
         playerController2DTopDown = GetComponent<PlayerController2DTopDown>();
+        health = 4;
         health = numOfHearts;
-        gameOverMenu = GameObject.Find("GameOverMenu");
+        //gameOverMenu = GameObject.Find("GameOverMenu").GetComponent<GameOverMenu>();
         ChangeKeyCount();
     }
 
     void Update()
     {
-        //healthTMPro.text = "Health: " + health.ToString();
-
         if(health > numOfHearts)
         {
             health = numOfHearts;
@@ -82,7 +75,6 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
-
     public /*static*/ void DamagePlayer(int damage)
     {
         health -= damage;
@@ -94,11 +86,6 @@ public class PlayerStatManager : MonoBehaviour
         }
     }
 
-    public void CollectPoison()
-    {
-        HealPlayer(1); // Heal the player by 1 heart
-    }
-
     public /*static*/ void HealPlayer(int healAmount)
     {
         health = Mathf.Min(numOfHearts, health + healAmount);
@@ -107,7 +94,7 @@ public class PlayerStatManager : MonoBehaviour
     private /*static*/ void KillPlayer()
     {
         Cursor.visible = true;
-        gameOverMenu.GetComponent<GameOverMenu>().GameOver();
+        gameOverMenu.GameOver();
     }
 
     private void ChangeKeyCount()

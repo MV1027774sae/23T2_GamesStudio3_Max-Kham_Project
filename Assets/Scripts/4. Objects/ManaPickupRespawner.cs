@@ -23,13 +23,13 @@ public class ManaPickupRespawner : MonoBehaviour
             
         if (player.GetComponent<PlayerController2DTopDown>().secondaryMana == 0 && canSpawn)
         {
-            SpawnMana();
+            canSpawn = false;
+            Invoke(nameof(SpawnMana), 1.5f);
         }
     }
 
     private void SpawnMana()
     {
         Instantiate(manaPickup, transform.position, Quaternion.identity);
-        canSpawn = false;
     }
 }

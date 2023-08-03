@@ -27,13 +27,13 @@ public class GameOverMenu : MonoBehaviour
     public void Retry()
     {
         DisableMenu();
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void ReturnToMainMenu()
     {
         DisableMenu();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     private void EnableMenu()
@@ -41,6 +41,7 @@ public class GameOverMenu : MonoBehaviour
         heartsUI.SetActive(false);
         manaUI.SetActive(false);
         keysUI.SetActive(false);
+        Cursor.visible = true;
 
         gameOverMenu.SetActive(true);
 
@@ -49,9 +50,10 @@ public class GameOverMenu : MonoBehaviour
 
     private void DisableMenu()
     {
-        //heartsUI.SetActive(true);
-        //manaUI.SetActive(true);
-        //keysUI.SetActive(true);
+        heartsUI.SetActive(true);
+        manaUI.SetActive(true);
+        keysUI.SetActive(true);
+        Cursor.visible = false;
 
         gameOverMenu.SetActive(false);
 

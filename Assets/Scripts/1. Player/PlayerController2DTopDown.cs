@@ -79,6 +79,10 @@ public class PlayerController2DTopDown : MonoBehaviour
         //beamShootObject.enabled = false;
         Physics2D.IgnoreLayerCollision(3, 8, false);
         _chargeSlider.SetActive(false);
+        secondaryMana = 0;
+        Physics2D.IgnoreLayerCollision(3, 8, false);
+        Physics2D.IgnoreLayerCollision(3, 9, false);
+        Physics2D.IgnoreLayerCollision(3, 10, false);
     }
 
     void Update()
