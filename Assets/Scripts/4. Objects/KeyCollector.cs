@@ -10,6 +10,7 @@ public class KeyCollector : MonoBehaviour
     private int collectedKeys = 0;
     public GameObject flag;
     public TextMeshProUGUI keysText; // Reference to the UI Text object
+    public TextMeshProUGUI infoText; // Reference to the UI Text object for displaying info
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class KeyCollector : MonoBehaviour
 
         if (collectedKeys >= totalKeys)
         {
+            StartCoroutine(ShowInfoTextForSeconds("Go And Find the Flag and Get Out Here", 5f));
             ActivateFlag();
         }
     }
@@ -37,4 +39,13 @@ public class KeyCollector : MonoBehaviour
     {
         flag.SetActive(true);
     }
+
+    private IEnumerator ShowInfoTextForSeconds(string message, float seconds)
+    {
+        infoText.text = message;
+        infoText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        infoText.gameObject.SetActive(false);
+    }
 }
+
