@@ -171,7 +171,7 @@ MonoBehaviour:
   maxHealth: 6
   health: 0
   flashDuration: 0.1
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashColor: {r: 1, g: 0, b: 0, a: 1}
   explosionPrefab: {fileID: 6478553177500169666, guid: 4fdc68bca55f8b343a7cbd5706476341, type: 3}
   healPoisonPrefab: {fileID: 8716582391399153135, guid: 0d9d1d3bd39db384abe2fdf39612989b, type: 3}
 --- !u!114 &4444708113100020181
