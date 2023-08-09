@@ -56,6 +56,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip primaryShootSFX;
     [SerializeField] private AudioClip secondaryShootSFX;
+    [SerializeField] private AudioClip secondaryChargeSFX;
     [SerializeField] private AudioClip teleportStart;
     [SerializeField] private AudioClip teleportEnd;
     [SerializeField] private AudioSource audioSource;
@@ -202,6 +203,7 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         moveSpeed = 4;
 
+        audioSource.PlayOneShot(secondaryChargeSFX);
         secondaryCharge++;
         _canCharge = false;
         Invoke(nameof(ResetChargeTime), _secondaryChargeInterval);
