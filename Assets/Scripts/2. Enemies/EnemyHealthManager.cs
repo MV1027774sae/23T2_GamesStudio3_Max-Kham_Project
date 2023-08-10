@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 1;
+    public float maxHealth = 1;
     public float health = 1;
 
     // Flashing effect variables
@@ -46,5 +46,4 @@ public class EnemyHealthManager : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;
     }
-
 }

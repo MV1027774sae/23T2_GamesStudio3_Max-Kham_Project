@@ -56,6 +56,7 @@ public class PlayerController2DTopDown : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip primaryShootSFX;
     [SerializeField] private AudioClip secondaryShootSFX;
+    [SerializeField] private AudioClip secondaryChargeSFX;
     [SerializeField] private AudioClip teleportStart;
     [SerializeField] private AudioClip teleportEnd;
     [SerializeField] private AudioSource audioSource;
@@ -76,7 +77,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         _canCharge = true;
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         _chargeSlider = GameObject.Find("Circle Slider");
-        //beamShootObject.enabled = false;
         Physics2D.IgnoreLayerCollision(3, 8, false);
         _chargeSlider.SetActive(false);
         secondaryMana = 0;
@@ -210,6 +210,8 @@ public class PlayerController2DTopDown : MonoBehaviour
         {
             secondaryCharge = 100;
         }
+
+        //audioSource.PlayOneShot(secondaryChargeSFX);
     }
 
     private void ResetChargeTime()
@@ -219,8 +221,6 @@ public class PlayerController2DTopDown : MonoBehaviour
 
     private void SecondaryFire()
     {
-        //StartCoroutine(SecondaryFireAttack());
-
         Vector2 targetPosition = target.transform.localPosition;
 
         Vector2 aimDirection = targetPosition - rb.position;
@@ -228,14 +228,12 @@ public class PlayerController2DTopDown : MonoBehaviour
 
         Rigidbody2D ball = Instantiate(secondaryFireObject, shootPoint.position, Quaternion.Euler(0, 0, angle)).GetComponent<Rigidbody2D>();
         ball.velocity = new Vector2(targetPosition.x, targetPosition.y).normalized * secondaryVelocity;
-
         
         secondaryMana--;
         _alreadyFired = true;
         _beamFired = true;
         Invoke(nameof(ResetSecondaryFire), beamRechargeTime);
 
-        
         audioSource.PlayOneShot(secondaryShootSFX);
     }
 
@@ -251,7 +249,6 @@ public class PlayerController2DTopDown : MonoBehaviour
         _beamFired = false;
         secondaryDamageMultiplier = 0;
     }
-
 
     private IEnumerator Dash()
     {
