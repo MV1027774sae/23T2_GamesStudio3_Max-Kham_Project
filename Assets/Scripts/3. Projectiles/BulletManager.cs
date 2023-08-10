@@ -42,10 +42,6 @@ public class BulletManager : MonoBehaviour
         {
             DestroySelf();
         }
-        if(collision.tag=="Fake Wall")
-        {
-            DestroySelf();
-        }
 
         else return;
     }

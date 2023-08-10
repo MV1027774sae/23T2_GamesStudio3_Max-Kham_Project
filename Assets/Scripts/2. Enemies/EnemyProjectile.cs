@@ -20,7 +20,7 @@ public class EnemyProjectile : MonoBehaviour
             DestroySelf();
         }
 
-        if (collision.tag == "Simple Collider")
+        if (collision.tag == "Simple Collider" || collision.tag == "DestroyableObject")
         {
             DestroySelf();
         }
