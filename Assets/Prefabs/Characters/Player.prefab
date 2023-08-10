@@ -335,7 +335,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.75
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.9
+  m_Intensity: 0.7
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000fb4b28f63722d814fb0c52477595685a0d64d2b8ad0941a3fd1c45cf
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 1.2
+  m_PointLightOuterRadius: 2.4
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
@@ -533,8 +533,8 @@ MonoBehaviour:
   beamChargeSlider: {fileID: 832362787097731137}
   chargeToFire: 30
   secondaryMana: 0
-  fullMana: {fileID: -3983950619504736678, guid: 74f8b4d56cb24724abef2f7c526fd9ca, type: 3}
-  emptyMana: {fileID: -9176472066801411641, guid: 74f8b4d56cb24724abef2f7c526fd9ca, type: 3}
+  fullMana: {fileID: 1328269467, guid: 0408ca6b7179e5a4385956ca5358b0ad, type: 3}
+  emptyMana: {fileID: 1591066374, guid: 0408ca6b7179e5a4385956ca5358b0ad, type: 3}
   mana:
   - {fileID: 0}
   - {fileID: 0}
@@ -577,8 +577,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  fullHeart: {fileID: -5390123095117124330, guid: 74f8b4d56cb24724abef2f7c526fd9ca, type: 3}
-  emptyHeart: {fileID: 1472389954, guid: 497877696662aee47ba7434638be1ea7, type: 3}
+  fullHeart: {fileID: -1403079080, guid: 0408ca6b7179e5a4385956ca5358b0ad, type: 3}
+  emptyHeart: {fileID: -1798308637, guid: 0408ca6b7179e5a4385956ca5358b0ad, type: 3}
   numOfKeys: 0
   keysTMPro: {fileID: 0}
   gameOverMenu: {fileID: 0}

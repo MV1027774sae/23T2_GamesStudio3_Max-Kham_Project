@@ -46,5 +46,4 @@ public class EnemyHealthManager : MonoBehaviour
         yield return new WaitForSeconds(flashDuration);
         spriteRenderer.color = originalColor;
     }
-
 }
