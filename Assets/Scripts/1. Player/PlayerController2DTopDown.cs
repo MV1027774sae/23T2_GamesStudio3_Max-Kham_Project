@@ -268,6 +268,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 8, true);
         Physics2D.IgnoreLayerCollision(3, 9, true);
         Physics2D.IgnoreLayerCollision(3, 10, true);
+        Physics2D.IgnoreLayerCollision(3, 12, true);
         yield return new WaitForSeconds(dashTime);
 
         _isDashing = false;
@@ -281,6 +282,7 @@ public class PlayerController2DTopDown : MonoBehaviour
         Physics2D.IgnoreLayerCollision(3, 8, false);
         Physics2D.IgnoreLayerCollision(3, 9, false);
         Physics2D.IgnoreLayerCollision(3, 10, false);
+        Physics2D.IgnoreLayerCollision(3, 12, false);
         yield return new WaitForSeconds(dashCooldown);
 
         canDash = true;

@@ -31,7 +31,7 @@ public class FireballManager : MonoBehaviour
         float explosionDamage = (damage * playerController2DTopDown.secondaryDamageMultiplier);
         float explosionRadius = (damageRadius * playerController2DTopDown.secondaryDamageMultiplier);
 
-        if (collision.tag == "Enemy" || collision.tag == "DestroyableObject" || collision.tag == "StrongObject" || collision.tag == "Simple Collider")
+        if (collision.tag == "Enemy" || collision.tag == "DestroyableObject" || collision.tag == "StrongObject" || collision.tag == "Simple Collider" || collision.tag=="Fake Wall")
         {
             hitPositionForGizmoDrawing = collision.gameObject.transform.position;
             Collider2D[] targetsHit = Physics2D.OverlapCircleAll(transform.position, explosionRadius, targetLayermask);
