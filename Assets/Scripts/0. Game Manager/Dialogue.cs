@@ -2,20 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
-
-public class Dialogue: MonoBehaviour
+public class Dialogue : MonoBehaviour
 {
+    public TextMeshProUGUI textComponent;
+    public Image imageComponent; // Add this reference to your Image component
+    public string[] lines;
+    public Sprite[] images; // Add an array of images corresponding to your lines
+    public float textSpeed;
 
-	public TextMeshProUGUI textComponenet;
-	public string[] lines;
-	public float textSpeed;
-
-	private int index;
+    private int index;
+    private bool isDisplayingText;
 
     void Start()
     {
-        textComponenet.text = string.Empty;
+        textComponent.text = string.Empty;
+        imageComponent.sprite = null; // Set the initial image to be empty
         StartDialogue();
     }
 
@@ -23,14 +26,15 @@ public class Dialogue: MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (textComponenet.text == lines[index])
+            if (isDisplayingText)
             {
-                NextLine();
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+                isDisplayingText = false;
             }
             else
             {
-                StopAllCoroutines();
-                textComponenet.text = lines[index];
+                NextLine();
             }
         }
     }
@@ -38,16 +42,19 @@ public class Dialogue: MonoBehaviour
     void StartDialogue()
     {
         index = 0;
-        StartCoroutine(TypeLine());
+        isDisplayingText = false;
+        imageComponent.sprite = images[index]; // Show the image for the first line
     }
 
     IEnumerator TypeLine()
     {
-        foreach (char C in lines[index].ToCharArray())
+        isDisplayingText = true;
+        foreach (char c in lines[index].ToCharArray())
         {
-            textComponenet.text += C;
+            textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
         }
+        isDisplayingText = false;
     }
 
     void NextLine()
@@ -55,13 +62,13 @@ public class Dialogue: MonoBehaviour
         if (index < lines.Length - 1)
         {
             index++;
-            textComponenet.text = string.Empty;
+            textComponent.text = string.Empty;
+            imageComponent.sprite = images[index]; // Show the image for the next line
             StartCoroutine(TypeLine());
         }
         else
         {
             gameObject.SetActive(false);
         }
-      
     }
 }
