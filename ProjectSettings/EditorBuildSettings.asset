@@ -20,10 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2Scene.unity
     guid: b3bf2a2081d0bab4fb9d8e2041c7886d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/KhamWorkScene.unity
     guid: e7a7467b288871441bcd07bb3f71a2a7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlaytestScene.unity
     guid: e8f5feccbac41cd43bb27166ac17b4ff
   m_configObjects: {}
