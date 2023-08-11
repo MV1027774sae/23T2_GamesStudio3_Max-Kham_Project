@@ -158,8 +158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -621.26324, y: 288}
-  m_SizeDelta: {x: 257.4645, y: 302.819}
+  m_AnchoredPosition: {x: -640.92, y: 290}
+  m_SizeDelta: {x: 218.1608, y: 224.2116}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &86646900
 MonoBehaviour:
@@ -237,7 +237,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -347}
+  m_AnchoredPosition: {x: 0, y: -304}
   m_SizeDelta: {x: -366.2576, y: -1218.2183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &171512605
@@ -293,6 +293,7 @@ MonoBehaviour:
   textComponent: {fileID: 593928980}
   imageComponent: {fileID: 86646900}
   lines:
+  - 'Spirit: ...'
   - 'Spirit: (whispers) Welcome, lost one.'
   - 'Player Wizard: (confused) Who are you? Where am I?'
   - 'Spirit: I am but a flicker of the past, I will help you find yourself in the
@@ -304,6 +305,7 @@ MonoBehaviour:
   - 'Player Wizard: (curious) A new spell? But I can''t even remember my old spells.'
   - 'Spirit: (nodding) Let me lead you.'
   images:
+  - {fileID: -992286588, guid: eecae0408f316364cae5d5c0baad3a70, type: 3}
   - {fileID: -992286588, guid: eecae0408f316364cae5d5c0baad3a70, type: 3}
   - {fileID: -1799368294, guid: 28859f5c806438243aa111397ce3739d, type: 3}
   - {fileID: -992286588, guid: eecae0408f316364cae5d5c0baad3a70, type: 3}
@@ -494,7 +496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -24.999983}
+  m_AnchoredPosition: {x: -0.00039864, y: 0.000005722}
   m_SizeDelta: {x: 1500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &593928980
