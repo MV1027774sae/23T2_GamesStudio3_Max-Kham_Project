@@ -5,12 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class StartGame : MonoBehaviour
 {
-    public void PlayGame()
+    [SerializeField] private GameObject creditsPanel;
+    public void PlayTutorial()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
-    public void Level2()
+    public void PlayLevel1()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+2);
+    }
+    public void PlayLevel2()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+    }
+    public void EnableCredits()
+    {
+        creditsPanel.SetActive(true);
+    }
+    public void DisableCredits()
+    {
+        creditsPanel.SetActive(false);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

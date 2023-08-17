@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3435016287851557556}
   - component: {fileID: 3693970110701655960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 2977644167718796622}
   - component: {fileID: 2977644167718796625}
   - component: {fileID: 2977644167718796624}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fireball GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,9 +230,9 @@ GameObject:
   - component: {fileID: 538520119180215714}
   - component: {fileID: 8828607952512432398}
   - component: {fileID: -5183568437914659490}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy Fireball
-  m_TagString: Bullet
+  m_TagString: Enemy Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -9,7 +9,7 @@ public class TempDoorManager : MonoBehaviour
     public Transform teleportDestination;
     public BoxCollider2D doorCollider;
 
-    private bool isDeactivated = false;
+    //private bool isDeactivated = false;
 
     private void Start()
     {

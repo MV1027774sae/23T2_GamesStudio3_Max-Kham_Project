@@ -32,7 +32,7 @@ public class KeyCollector : MonoBehaviour
 
     private void UpdateKeysText()
     {
-        keysText.text = "Keys: " + collectedKeys + " / " + totalKeys;
+        keysText.text = collectedKeys.ToString();
     }
 
     private void ActivateFlag()

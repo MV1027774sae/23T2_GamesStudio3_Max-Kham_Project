@@ -12,23 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroScene.unity
     guid: ed7694956d06f1442aa9a56843f9024f
   - enabled: 1
-    path: Assets/Scenes/Cutscene1.unity
-    guid: 11c7af92ed364f4429da5b92f221a0c2
-  - enabled: 1
     path: Assets/Scenes/TutorialScene.unity
     guid: f9f8f21676eaa954dab090f37558614b
   - enabled: 1
     path: Assets/Scenes/Level1Scene.unity
     guid: 6cf62fe820169064dafcab89923c36f7
   - enabled: 1
-    path: Assets/Scenes/Cutscene2.unity
-    guid: 5cf580d125647ed49a110fc6d77659b4
-  - enabled: 1
     path: Assets/Scenes/Level2Scene.unity
     guid: b3bf2a2081d0bab4fb9d8e2041c7886d
-  - enabled: 1
-    path: Assets/Scenes/CutScene3.unity
-    guid: 22cc612a7bf49144b8035f2bfb03b1cd
   - enabled: 0
     path: Assets/Scenes/KhamWorkScene.unity
     guid: e7a7467b288871441bcd07bb3f71a2a7

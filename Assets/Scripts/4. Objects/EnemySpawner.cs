@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnRate = 3f;
     [SerializeField] private float spawnRange = 4f;
     public bool canSpawn = false;
-    [SerializeField] private int totalEnemiesSpawned = 0;
+    //[SerializeField] private int totalEnemiesSpawned = 0;
     [SerializeField] private int enemySpawnLimit = 10;
 
     private void OnDrawGizmosSelected()
