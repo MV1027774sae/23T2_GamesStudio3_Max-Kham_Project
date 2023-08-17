@@ -440,8 +440,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Spirit: (steps closer) You see, your mana is stable now, and your body
-    is stronger than ever. You have provided me with the perfect opportunity.'
+  m_text: 'Spirit: (steps closer) Your mana is stable now, and your body is stronger
+    than ever. You have provided me with the perfect opportunity.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
   m_sharedMaterial: {fileID: 3522669439882571662, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
@@ -697,7 +697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0856832ca1aa741bc99c9cadb83227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionTime: 24
+  transitionTime: 26
 --- !u!1 &730649994
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Spirit: (smirking) Ah, my dear lost one. How amusing it is to see you
-    struggle, to see you grasp at forgotten fragments of your identity.'
+    struggle.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
   m_sharedMaterial: {fileID: 3522669439882571662, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
@@ -1550,10 +1550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Wizard: (confused) What... what''s happening? You were supposed to help
-    me!
-
-'
+  m_text: "Wizard: (confused) What... what you mean? \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
   m_sharedMaterial: {fileID: 3522669439882571662, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
