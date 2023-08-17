@@ -1084,9 +1084,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Spirit: (malevolent grin) Your memories, your magic, your very essence\u2014they
-    will be mine. Your body shall become my conduit to the living world. A rebirth,
-    if you will."
+  m_text: 'Spirit: (malevolent grin) Your memories, your magic, your very essence
+    they will be mine. Your body shall become my conduit to the living world. A rebirth,
+    if you will.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
   m_sharedMaterial: {fileID: 3522669439882571662, guid: 056d8e022bbc9564fbe514ca15082f1a, type: 2}
@@ -1152,7 +1152,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &972738167

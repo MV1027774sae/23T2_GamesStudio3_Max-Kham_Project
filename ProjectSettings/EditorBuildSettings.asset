@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenuScene.unity
     guid: ccf4c806a04f727428e2063b357501b5
   - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: ed7694956d06f1442aa9a56843f9024f
+  - enabled: 1
     path: Assets/Scenes/Cutscene1.unity
     guid: 11c7af92ed364f4429da5b92f221a0c2
   - enabled: 1
@@ -26,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutScene3.unity
     guid: 22cc612a7bf49144b8035f2bfb03b1cd
-  - enabled: 1
-    path: Assets/Scenes/IntroScene.unity
-    guid: ed7694956d06f1442aa9a56843f9024f
   - enabled: 0
     path: Assets/Scenes/KhamWorkScene.unity
     guid: e7a7467b288871441bcd07bb3f71a2a7

@@ -31,7 +31,7 @@ public class SceneTransition : MonoBehaviour
 
         LoadNextScene();
 
-        transitionAim.SetTrigger("Start");
+        //transitionAim.SetTrigger("Start");
     }
 
     void LoadNextScene()
