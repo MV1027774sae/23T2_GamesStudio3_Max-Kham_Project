@@ -81,7 +81,7 @@ public class PauseMenu : MonoBehaviour
         manaUI.SetActive(true);
         keysUI.SetActive(true);
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(6);
         Time.timeScale = 1f;
     }
 
