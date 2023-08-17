@@ -33,7 +33,7 @@ public class GameOverMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         DisableMenu();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(6);
     }
 
     private void EnableMenu()
