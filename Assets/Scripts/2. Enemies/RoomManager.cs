@@ -6,19 +6,25 @@ using UnityEngine.SceneManagement;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _enemiesInRoom = new List<GameObject>();
+    private bool on;
 
     private BoxCollider2D BoxCollider;
 
     void Start()
     {
+        on = false;
         BoxCollider = gameObject.GetComponent<BoxCollider2D>();
+        StartCoroutine(Delay());
     }
 
     void Update()
     {
-        if (!_enemiesInRoom.Contains(GameObject.FindGameObjectWithTag("Enemy")))
+        if (on)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (!_enemiesInRoom.Contains(GameObject.FindGameObjectWithTag("Enemy")))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
         }
     }
 
@@ -28,6 +34,12 @@ public class RoomManager : MonoBehaviour
         {
             _enemiesInRoom.Add(collision.gameObject);
         }
+    }
+
+    private IEnumerator Delay()
+    {
+        on = true;
+        yield return new WaitForSeconds(10);
     }
 } 
 
