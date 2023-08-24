@@ -3,6 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void LoadNextScene()
     {
         // Get the current scene index

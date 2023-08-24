@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 public class StartGame : MonoBehaviour
 {
     [SerializeField] private GameObject creditsPanel;
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void PlayTutorial()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     public void PlayLevel1()
     {
@@ -16,7 +20,7 @@ public class StartGame : MonoBehaviour
     }
     public void PlayLevel2()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(4);
     }
     public void EnableCredits()
     {
